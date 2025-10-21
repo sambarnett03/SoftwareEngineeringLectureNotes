@@ -1,0 +1,180 @@
+## Lecture 3: Functional Programming
+
+Python is not a functional programming language so won't cover in detail. It involves programming with *pure* functions and higher order functions.
+
+### Pure functions
+Pure functions are referentially transparent - they always give the same output for the same inputs. It also means you could replace the entire function in the code with its output and it wouldn't effect its result. e.g sqrt(4) is pure, but the function today() -> 14/10/2025 is not a pure function as its return is different indepedent of the inputs. This also means a pure function cannot have any side effects.
+
+Impure things include:
+    - changing the value of a variable
+    - modifying a data structure in place
+    - printing to the console
+    - writing to a file
+    - sending data over a network
+    - reading from a file or keyboard
+    - fetching data from a database or API
+    - getting the current time or date
+    - generating a random number
+
+These are obviously useful. Most useful programmes are impure.
+
+
+### Why avoid impure functions
+Mutablitility is the source of bugs. By limiting the things in your program that can be changed and the parts of it that can change them, bugs become easier to track.
+
+Pure functions are easily testable because they give the same output for a given input. They can also be composed to create a new function. They are also easy to parallelise. e.g h(x) = g(x) + f(x), g and f can be run in parallel easily since the order in which they are run does not matter.
+
+
+### Downsides of functional programming
+If you never mutate anything, you require lots of copies of data which can be costly. Work arounds include:
+    - using smart data structures that avoid copying where possible
+    - using mutablility under the hood while providing functional style interface
+
+pandas dataframes are an example of a smart data structure. It offers a functional interface, but uses non-functional features under the hood wnad won't actually copy data unless it needs to.
+
+pandas example:
+
+```{python}
+data = {'A': [1,2,3], 'B':[4,5,6]}
+df1 = pd.DataFrame(data)
+df2 = df1.rename(columns = {'A' : 'a'})
+```
+is functional because it returns df2 separately as a new dataframe without changing df1. Under the hood, however, data is changed for optimisation reasons
+
+
+### Notable functional languages
+- Lisp
+- Haskell
+- Scala
+- F#
+- Google Earth Engine?
+
+
+First-class functions are functions that can be passed as arguments, returned from functions, or assigned to variables.
+
+Lambda functions are small, unnamed functions defined in the normal flow of the program. They are typically defined at the point of use, unlike usual functions
+
+e.g
+
+```{python}
+# first class functions
+def greed():
+    return 'Hello'
+
+hello = greet
+print(hello())
+
+
+# lambda functions
+add = lambda x, y: x + y
+print(add(2, 3))
+```
+
+
+
+
+Higher order functions are functions that take other arguments as functions e.g map, filter, reduce functions in pythons. These use lazy evaluation - when you call map, it returns an object (generator), but does not actually calculate the map until you for it. In the example below, the list() call executes the generator. Lazy execution is used so that different functions can be stacked to create complex generators, then computed all at once. This means the input only needs to be looped over once.
+
+
+```{python}
+numbers = [1,2,3,4]
+
+# map
+squared = list(map(lambda x: x**2, numbers))
+print(squared) 
+# output [1, 4, 9, 16, 25]
+
+
+# reduce
+from functools import reduce
+product = reduce((lambda x, y: x * y), numbers)
+print(product)
+# output 120
+```
+
+Note that sum, mean, stdev, max, min, len etc are examples of the reduce function
+
+
+
+Any time you have a collection of things and you need to transform it into a new collection of things, consider using higher order functions (map, filter, reduce) rather than using loops. This allows parallelisation as the functions are pure, clearer code, and less likely to create bugs.
+
+
+
+
+### List comprehensions and generators
+More pythonic way to do maps. Generators are similar to list comprehensions but are lazily executed so won't generate new list unless asked to, useful for composition.
+
+```{python}
+squared = [x**2 for x in numbers]
+
+squared_dict = {x: x**2 for x in numbers}
+# output {1:1, 2:4, 3:9, 4:16, 5:25}
+
+squared_gen = (x**2 for x in numbers)
+for num in squared_gen:
+    print(num)
+```
+
+
+
+
+### Decorators
+Higher order functions that take another function as an argument, modifies it, then returns it.
+
+Example use case: have a code that depends on a database and you want to test the code with some test data. You could use a decorator that sets up database first and adds the test data, calls test function (which is already defined), then cleans up after itself, deleting the test data added.
+
+Simple example:
+
+```{python}
+def my_decorator(func):
+    def wrapper():     
+        print('before func call')
+        func()
+        print('after func call')
+    return wrapper
+
+@my_decorator
+def say_hello():
+    print('Hello')
+
+#>say_hello()
+#before function call
+#Hello
+#After function 
+```
+So modifies say_hello() to include print statements - in this way we can modify functions to have things happening before and after
+
+
+
+
+### Recursion
+Calling a function from within itself
+
+<details>
+<summary>Code</summary>
+```{python}
+# Recursive
+def factorial(n):
+    if n==0:
+        return 1
+    return n * factorial(n-1)
+
+```
+
+This works because of the mathematical definition of recursion
+$$
+\begin{align}
+&0! = 1 \\
+&n! = n \times (n-1)!
+\end{align}
+$$
+</details>
+
+
+### Summary
+Functional programming improves
+    - testability
+    - composability
+    - parallelisability
+
+In functional programming, we shift from an imperative mindset ('do this, do that, do this') to a declarative one ('here is what I need') and it becomes about chaining transformation to the data.

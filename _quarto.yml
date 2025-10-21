@@ -1,0 +1,27 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "My Lecture Notes"
+  navbar:
+    left:
+      - text: "Home"
+        href: index.qmd
+  sidebar:
+    style: "docked"
+    search: true
+    contents: auto
+
+execute:
+  eval: false
+  
+format:
+  html:
+    code-fold: false
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    number-sections: false
+    smooth-scroll: true

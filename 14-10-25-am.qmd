@@ -1,0 +1,265 @@
+## Lecture 2: Object Oriented Programming (oop)
+
+- Plan at start of project how to architect the code - this way can allow for most flexibility in code 
+    - types of things we need to represent
+    - what data do we need 
+    - what are the relationships between the types of data
+
+
+### Example: limits of functional programming
+
+```{python}
+temp = 0
+steps = 1e8
+
+for step in range(steps):
+    gas = initialise_gas(temp)
+    photons = generate_photons()
+    temp += calculate_temperature(gas, photons)
+
+print('temperature is', temp)
+```
+
+
+
+
+Now extend to new use case. 
+```{python}
+temp = 0
+steps = 1e8
+photon_source = 'black hole'
+
+for step in range(steps):
+    gas = initialise_gas(temp)
+    if photon_source = 'black hole':
+        photons = generate_photons_black_hole()
+    else:
+        photons = generate_photons()
+    temp += calculate_temperature(gas, photons)
+
+print('temperature is', temp)
+```
+
+
+Now not ideal, looping through unecessarily, code is also more messy, especially if you add another source of photons. Or, if you want to add another temperature model. Then more if statements than before.
+
+Oop maybe better in this case
+
+### Example: intro to oop
+
+```{python}
+
+academics = []
+papers = []
+
+def write_paper(academics, papers, academic, paper):
+    academics.append(academic)
+    papers.append(paper)
+
+write_paper(academics, papers, 'NAME1', 'NAME2')
+```
+
+Main issue here is that we have two separate bits of data, not clear how they relate, and the relationship between the function and data is a little abstract and tenuous. Oop adds meaning to data. Associate the functions with the data, so the data lives inside the function class.
+
+A class defines a bundle of data and functions. An object is an instance of a class. All objects have the same behaviour (method), but different data (attributes).
+
+
+```{python}
+
+class Academic:
+    def __init__(self, name):
+        self.name = name
+        self.papers = []
+
+    def write_paper(self, title):
+        self.papers.append(title)
+
+sam = Academic('Name1')
+sam.write_paper('Paper1')
+
+```
+
+This is much cleaner, less passing of data around.
+
+
+### Entity diagrams
+Draw a diagram
+- Consider the objects in the problem
+- What do they do?
+- What properties do they have?
+- How do they relate?
+
+
+### Inheritance
+- identity relationship ('x is a y')
+- can go down multiple steps
+- each has access to all functions of the parent
+
+e.g person has name and office
+    admin is subclass of person
+    academic is subclass of person with additonal attributes papers
+    student is subclass of academic with additional attribute graduate
+    lecturer is subclass of academic with additional attribute teach course
+
+### Composition
+- Ownership relationship ('x has a y')
+- Classes can have objects as data within them
+
+e.g define class called paper with title and text
+    store list of these papers within academic class
+    this is a composition relationship
+
+Composition and inheritance can be combined. There is usually many ways to acheive the same thing. Use the simplest and clearest solution where possible.
+
+Sometimes using inheritance a lot can be cumbersome. You can end up bringing in functionality to a class from its parent class that is not needed. This is especially common when using many classes with lots of layers. Composition can negate this, only bringing in the methods that you want. In general, use composition where possible.
+
+
+### Polymorphism
+- Can mean modified inheritance
+- Can mean different implementations of the same method
+
+e.g academic has papers and write papers
+    phd student is a subclass of academic
+    research software engineer writes slightly different papers, so can still make as a subclass of academic but override the write paper method
+
+This is useful as the user jkust calls .write_paper, but this does a slightly different things depending on the subclass its called from. This allows them both to be treated as a generic list of academics. This means the user doesn't need to care about the difference between phd student and research software engineer.
+
+In this case, the academic class may never actually be used, only its subclasses. In this case, academic is called a virtual class - it is never used itself. Libraries exist allowing you to make a class virtual - i.e it stops it being constructed.
+
+You can also have virtual functions - write paper in academic could be overidden by both phd student and software engineer in which case the original write_paper would never be called.
+
+In entity diagrams, virtual classes and functions are represented with dashed lines.
+
+
+### Example: oop redesign for temp calculation
+Make a class called temp_model with virtual function calculate temp.
+subclass this into two different temp models, e.g matthews model and sims model - write the calc_temp function for each.
+
+Similarly, one class called photon source with method generate. 
+subclass this into black hole and white dwarf, with generate function for each.
+
+Final class called gas cloud. Compose temp model into gas cloud with methods temp model (through composition), calc_temp, calc_structure, and attributes temp and structure. 
+
+Now code looks like:
+
+```{python}
+steps = 1e8
+photon_source = PhotonSourceBlackHole()
+gas_cloud = GasCloud(
+    temp_model = TemperatureModelMatthews()     # this is composition
+    start_temp = 0
+)
+
+for step in range(steps):
+    gas_cloud = cal_structure()
+    photons = photon_source.generate()
+    gas_cloud.cal_temp(photons)
+
+print('final temp is', temp)
+```
+
+
+
+### Note on Python
+In python, isinstance() considers inheritance, so an instant of a subclass will pass when compared with its parent class. type() does not account for subclasses.
+
+
+### Note on static methods
+Static methods are used when you have a function that is logically bound to class but doesn't require access to the class itself. For example, if you have a Date() class with attributes day, month year, you may want to validate whether a data as presented as a string is valid by checking if the first number < 31, the second < 12 etc. A function to do this can be added to the Date class as a static method, and is then called using Data.is_date_valid(). In this way it becomes associated with the class, without having any access to the internals.
+
+e.g:
+```{python}
+class Date(object):
+    
+    def __init__(self, day=0, month=0, year=0):
+        self.day = day
+        self.month = month
+        self.year = year
+
+    @staticmethod
+    def is_date_valid(date_as_string):
+        day, month, year = map(int, date_as_string.split('-'))
+        return day <= 31 and month <= 12 and year <= 3999
+
+# usage:
+is_date = Date.is_date_valid('11-09-2012')
+```
+
+
+### Class methods
+Class methods are bound to the class itself, not an instance of the class. This means they can be used as alternative way of instanteating a class. In the above example, an instance of the Data class can be created using three integers (day, month and year). However, what if you wanted to create an instance of the class from a string in ddmmyyyy format. Adding a class method to the Date class allows this.
+
+e.g
+```{python}
+class Date(object):
+    
+    def __init__(self, day=0, month=0, year=0):
+        self.day = day
+        self.month = month
+        self.year = year
+
+    @classmethod
+    def from_string(cls, date_as_string):
+        day, month, year = map(int, date_as_string.split('-'))
+        date1 = cls(day, month, year)
+        return date1
+
+date2 = Date.from_string('11-09-2012')
+
+```
+date2 is now an instance of the Date class, generated from a string. You could in principle have a separate function in the code that parses a string into three integers, and then use this to instantiate the Date object, but this is less clean than using a class method
+
+
+Class methods are also used to edit class level data. If a class has an attribute such as company_name = 'ABC' defined OUTSIDE the __init__ (making it belong to the class not the instance), this can be edited using a class method.
+
+e.g
+```{python}
+class Employee:
+    company_name = "TechCorp"
+
+    def __init__(self, name):
+        self.name = name
+        Employee.employee_count += 1
+
+    @classmethod
+    def set_company_name(cls, name):
+        cls.company_name = name
+```
+
+A final point on class methods is that they support inheritance. The first argument, cls, refers to the class that called the method - not necessarily the where it was defined.
+
+e.g
+```{python}
+class Date:
+    def __init__(self, day, month, year):
+        self.day = day
+        self.month = month
+        self.year = year
+
+    @classmethod
+    def from_string(cls, date_as_string):
+        day, month, year = map(int, date_as_string.split('-'))
+        return cls(day, month, year)
+
+
+class DateTime(Date):
+    def __init__(self, day, month, year, hour=0, minute=0):
+        super().__init__(day, month, year)
+        self.hour = hour
+        self.minute = minute
+
+
+dt = DateTime.from_string("14-10-2025")
+```
+So here, from_string is created inside the base class Date(). When .from_string is called from a Date object, the class referenced (cls) is a Data object, so Date.from_string('abc') returns a Date(a, b, c). However, when .from_string is called on a DateTime object, e.g DateTime.from_string('abc'), the class method returns DateTime(a, b, c), hence returning a DateTime like object. Note that the class method itself was inherited by DateTime from Date, which is why it can be called at all. 
+
+Using the same example but with a static method would look like:
+
+```{python}
+@staticmethod
+def from_string(date_as_string):
+    day, month, year = map(int, date_as_string.split('-'))
+    return Date(day, month, year)  
+
+```
+Here, the method does not take cls as an argument, and will only return a Date type object. This is less flexible

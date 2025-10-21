@@ -1,0 +1,33 @@
+## Lecture 5: Collaborative Code Development with Git and Github
+
+### Project Management with Github
+- Use Github Issues for tracking tasks
+    - can define template for issues
+    - can add labels to issues such as bug, feature, priority: high etc.
+    - for bugs typically want steps to reproduce
+    - can assign people to issues
+    - can add comments
+    - can make a new branch to solve current issues, maybe include issue number in branch name
+
+
+- Have main branch that holds tested, working code. Issues are raised with this code. New branches are created to solve these issues. Once solved, the branch created for the issue is merged with main. The old branch can then be deleted.
+
+- The merging of issue branches and main is not trivial. Will cover in detail later.
+
+
+### Permissions
+- Organise how to let people write to your repo
+
+- Two main options:
+    - shared repo model - common in small, private projects. Every developer has permission to write to the repo.
+
+    - Fork and pull model - popular in large, open source projects. Have original repo that one person has access to, or small group of people. Everyone else who wants to work on it forks the repo into the personal repo, does their work, then pull requests back to original repo (requiring the approval of the owner / small group in charge). Forking the repo produces a copy of it that they have access to (original repo referred to as origin, forked repo as fork)
+
+
+
+### Pull Requests
+- Used to merge a branch or fork. Can create templates for pull request page including e.g important checks.
+
+- Github supports automated tests to be set up for pull requests. They are .yml files that contain instructions such as checking linting, style and unit tests. These tests run on Github 'runners'.
+
+- Typically then want someone else working on the project to check the code. You can add comments to the code and give feedback.
