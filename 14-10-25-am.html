@@ -275,7 +275,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul>
 <section id="example-limits-of-functional-programming" class="level3">
 <h3 class="anchored" data-anchor-id="example-limits-of-functional-programming">Example: limits of functional programming</h3>
-<div id="d5cdf3e9" class="cell" data-execution_count="1">
+<div id="4eba4c48" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="fl">1e8</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -285,9 +287,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">+=</span> calculate_temperature(gas, photons)</span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'temperature is'</span>, temp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>Now extend to new use case.</p>
-<div id="7a833f4b" class="cell" data-execution_count="2">
+<div id="52d840e8" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>temp <span class="op">=</span> <span class="dv">0</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="fl">1e8</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>photon_source <span class="op">=</span> <span class="st">'black hole'</span></span>
@@ -301,13 +306,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    temp <span class="op">+=</span> calculate_temperature(gas, photons)</span>
 <span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'temperature is'</span>, temp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>Now not ideal, looping through unecessarily, code is also more messy, especially if you add another source of photons. Or, if you want to add another temperature model. Then more if statements than before.</p>
 <p>Oop maybe better in this case</p>
 </section>
 <section id="example-intro-to-oop" class="level3">
 <h3 class="anchored" data-anchor-id="example-intro-to-oop">Example: intro to oop</h3>
-<div id="937bb45b" class="cell" data-execution_count="3">
+<div id="db428c08" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>academics <span class="op">=</span> []</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>papers <span class="op">=</span> []</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -316,10 +324,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    papers.append(paper)</span>
 <span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>write_paper(academics, papers, <span class="st">'NAME1'</span>, <span class="st">'NAME2'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>Main issue here is that we have two separate bits of data, not clear how they relate, and the relationship between the function and data is a little abstract and tenuous. Oop adds meaning to data. Associate the functions with the data, so the data lives inside the function class.</p>
 <p>A class defines a bundle of data and functions. An object is an instance of a class. All objects have the same behaviour (method), but different data (attributes).</p>
-<div id="a49cfba5" class="cell" data-execution_count="4">
+<div id="e59dc942" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Academic:</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, name):</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.name <span class="op">=</span> name</span>
@@ -330,6 +341,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>sam <span class="op">=</span> Academic(<span class="st">'Name1'</span>)</span>
 <span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>sam.write_paper(<span class="st">'Paper1'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>This is much cleaner, less passing of data around.</p>
 </section>
@@ -374,7 +386,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Similarly, one class called photon source with method generate. subclass this into black hole and white dwarf, with generate function for each.</p>
 <p>Final class called gas cloud. Compose temp model into gas cloud with methods temp model (through composition), calc_temp, calc_structure, and attributes temp and structure.</p>
 <p>Now code looks like:</p>
-<div id="25b034ea" class="cell" data-execution_count="5">
+<div id="5396c668" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>steps <span class="op">=</span> <span class="fl">1e8</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>photon_source <span class="op">=</span> PhotonSourceBlackHole()</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>gas_cloud <span class="op">=</span> GasCloud(</span>
@@ -388,6 +402,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>    gas_cloud.cal_temp(photons)</span>
 <span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'final temp is'</span>, temp)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 </section>
 <section id="note-on-python" class="level3">
@@ -398,7 +413,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="note-on-static-methods">Note on static methods</h3>
 <p>Static methods are used when you have a function that is logically bound to class but doesn’t require access to the class itself. For example, if you have a Date() class with attributes day, month year, you may want to validate whether a data as presented as a string is valid by checking if the first number &lt; 31, the second &lt; 12 etc. A function to do this can be added to the Date class as a static method, and is then called using Data.is_date_valid(). In this way it becomes associated with the class, without having any access to the internals.</p>
 <p>e.g:</p>
-<div id="dfce5761" class="cell" data-execution_count="6">
+<div id="924bab91" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Date(<span class="bu">object</span>):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, day<span class="op">=</span><span class="dv">0</span>, month<span class="op">=</span><span class="dv">0</span>, year<span class="op">=</span><span class="dv">0</span>):</span>
@@ -413,13 +430,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="co"># usage:</span></span>
 <span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>is_date <span class="op">=</span> Date.is_date_valid(<span class="st">'11-09-2012'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 </section>
 <section id="class-methods" class="level3">
 <h3 class="anchored" data-anchor-id="class-methods">Class methods</h3>
 <p>Class methods are bound to the class itself, not an instance of the class. This means they can be used as alternative way of instanteating a class. In the above example, an instance of the Data class can be created using three integers (day, month and year). However, what if you wanted to create an instance of the class from a string in ddmmyyyy format. Adding a class method to the Date class allows this.</p>
 <p>e.g</p>
-<div id="12adec1b" class="cell" data-execution_count="7">
+<div id="d440ae76" class="cell" data-execution_count="7">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Date(<span class="bu">object</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, day<span class="op">=</span><span class="dv">0</span>, month<span class="op">=</span><span class="dv">0</span>, year<span class="op">=</span><span class="dv">0</span>):</span>
@@ -434,11 +454,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> date1</span>
 <span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>date2 <span class="op">=</span> Date.from_string(<span class="st">'11-09-2012'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>date2 is now an instance of the Date class, generated from a string. You could in principle have a separate function in the code that parses a string into three integers, and then use this to instantiate the Date object, but this is less clean than using a class method</p>
 <p>Class methods are also used to edit class level data. If a class has an attribute such as company_name = ‘ABC’ defined OUTSIDE the <strong>init</strong> (making it belong to the class not the instance), this can be edited using a class method.</p>
 <p>e.g</p>
-<div id="e27a9da4" class="cell" data-execution_count="8">
+<div id="f1c4421d" class="cell" data-execution_count="8">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Employee:</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>    company_name <span class="op">=</span> <span class="st">"TechCorp"</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -449,10 +472,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">@classmethod</span></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> set_company_name(cls, name):</span>
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>        cls.company_name <span class="op">=</span> name</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>A final point on class methods is that they support inheritance. The first argument, cls, refers to the class that called the method - not necessarily the where it was defined.</p>
 <p>e.g</p>
-<div id="780c7539" class="cell" data-execution_count="9">
+<div id="63a3565c" class="cell" data-execution_count="9">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> Date:</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>, day, month, year):</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.day <span class="op">=</span> day</span>
@@ -473,14 +499,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a>dt <span class="op">=</span> DateTime.from_string(<span class="st">"14-10-2025"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>So here, from_string is created inside the base class Date(). When .from_string is called from a Date object, the class referenced (cls) is a Data object, so Date.from_string(‘abc’) returns a Date(a, b, c). However, when .from_string is called on a DateTime object, e.g DateTime.from_string(‘abc’), the class method returns DateTime(a, b, c), hence returning a DateTime like object. Note that the class method itself was inherited by DateTime from Date, which is why it can be called at all.</p>
 <p>Using the same example but with a static method would look like:</p>
-<div id="fafbb8d6" class="cell" data-execution_count="10">
+<div id="9dda7ceb" class="cell" data-execution_count="10">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="at">@staticmethod</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> from_string(date_as_string):</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    day, month, year <span class="op">=</span> <span class="bu">map</span>(<span class="bu">int</span>, date_as_string.split(<span class="st">'-'</span>))</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> Date(day, month, year)  </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>Here, the method does not take cls as an argument, and will only return a Date type object. This is less flexible</p>
 

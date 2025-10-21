@@ -309,10 +309,13 @@ window.Quarto = {
 <p>If you never mutate anything, you require lots of copies of data which can be costly. Work arounds include: - using smart data structures that avoid copying where possible - using mutablility under the hood while providing functional style interface</p>
 <p>pandas dataframes are an example of a smart data structure. It offers a functional interface, but uses non-functional features under the hood wnad won’t actually copy data unless it needs to.</p>
 <p>pandas example:</p>
-<div id="0ca8b587" class="cell" data-execution_count="1">
+<div id="cb59bed5" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'A'</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], <span class="st">'B'</span>:[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]}</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(data)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df1.rename(columns <span class="op">=</span> {<span class="st">'A'</span> : <span class="st">'a'</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>is functional because it returns df2 separately as a new dataframe without changing df1. Under the hood, however, data is changed for optimisation reasons</p>
 </section>
@@ -328,7 +331,9 @@ window.Quarto = {
 <p>First-class functions are functions that can be passed as arguments, returned from functions, or assigned to variables.</p>
 <p>Lambda functions are small, unnamed functions defined in the normal flow of the program. They are typically defined at the point of use, unlike usual functions</p>
 <p>e.g</p>
-<div id="d70d8edc" class="cell" data-execution_count="2">
+<div id="75e5b67d" class="cell" data-execution_count="2">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first class functions</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greed():</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Hello'</span></span>
@@ -340,9 +345,12 @@ window.Quarto = {
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># lambda functions</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>add <span class="op">=</span> <span class="kw">lambda</span> x, y: x <span class="op">+</span> y</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(add(<span class="dv">2</span>, <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>Higher order functions are functions that take other arguments as functions e.g map, filter, reduce functions in pythons. These use lazy evaluation - when you call map, it returns an object (generator), but does not actually calculate the map until you for it. In the example below, the list() call executes the generator. Lazy execution is used so that different functions can be stacked to create complex generators, then computed all at once. This means the input only needs to be looped over once.</p>
-<div id="5f57337a" class="cell" data-execution_count="3">
+<div id="34660b98" class="cell" data-execution_count="3">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># map</span></span>
@@ -356,6 +364,7 @@ window.Quarto = {
 <span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>product <span class="op">=</span> <span class="bu">reduce</span>((<span class="kw">lambda</span> x, y: x <span class="op">*</span> y), numbers)</span>
 <span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(product)</span>
 <span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># output 120</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>Note that sum, mean, stdev, max, min, len etc are examples of the reduce function</p>
 <p>Any time you have a collection of things and you need to transform it into a new collection of things, consider using higher order functions (map, filter, reduce) rather than using loops. This allows parallelisation as the functions are pure, clearer code, and less likely to create bugs.</p>
@@ -363,7 +372,9 @@ window.Quarto = {
 <section id="list-comprehensions-and-generators" class="level3">
 <h3 class="anchored" data-anchor-id="list-comprehensions-and-generators">List comprehensions and generators</h3>
 <p>More pythonic way to do maps. Generators are similar to list comprehensions but are lazily executed so won’t generate new list unless asked to, useful for composition.</p>
-<div id="1ac88b62" class="cell" data-execution_count="4">
+<div id="315c5923" class="cell" data-execution_count="4">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>squared <span class="op">=</span> [x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> numbers]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>squared_dict <span class="op">=</span> {x: x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> numbers}</span>
@@ -372,6 +383,7 @@ window.Quarto = {
 <span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>squared_gen <span class="op">=</span> (x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> numbers)</span>
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> squared_gen:</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(num)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 </section>
 <section id="decorators" class="level3">
@@ -379,7 +391,9 @@ window.Quarto = {
 <p>Higher order functions that take another function as an argument, modifies it, then returns it.</p>
 <p>Example use case: have a code that depends on a database and you want to test the code with some test data. You could use a decorator that sets up database first and adds the test data, calls test function (which is already defined), then cleans up after itself, deleting the test data added.</p>
 <p>Simple example:</p>
-<div id="528de94b" class="cell" data-execution_count="5">
+<div id="dff94ba1" class="cell" data-execution_count="5">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_decorator(func):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper():     </span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'before func call'</span>)</span>
@@ -395,6 +409,7 @@ window.Quarto = {
 <span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#before function call</span></span>
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Hello</span></span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#After function </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <p>So modifies say_hello() to include print statements - in this way we can modify functions to have things happening before and after</p>
 </section>
@@ -405,12 +420,15 @@ window.Quarto = {
 <summary>
 Code
 </summary>
-<div id="a7d50931" class="cell" data-execution_count="6">
+<div id="d00a6db8" class="cell" data-execution_count="6">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recursive</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n):</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n<span class="op">==</span><span class="dv">0</span>:</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial(n<span class="op">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 This works because of the mathematical definition of recursion <span class="math display">\[
 \begin{align}

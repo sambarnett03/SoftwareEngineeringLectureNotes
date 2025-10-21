@@ -332,10 +332,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>The _ _init__.py gives access to functions which can be accessed with dot notation. In the following example, users can access func1 and func2:</li>
 </ul>
-<div id="7b760bf3" class="cell" data-execution_count="1">
+<div id="df97e75e" class="cell" data-execution_count="1">
+<details class="code-fold">
+<summary>Code</summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#parent_directory/__init__.py</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .script1 <span class="im">import</span> func1</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .script2 <span class="im">import</span> func2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 </div>
 <ul>
 <li>A common error can occur when calling a package from a different folder: ModuleNotFoundError. This is usually because the package directory is not in the system path. A quick fix to this is:</li>

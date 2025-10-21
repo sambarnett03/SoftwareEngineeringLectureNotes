@@ -20,6 +20,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -204,6 +239,13 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#dockerfiles" id="toc-dockerfiles" class="nav-link" data-scroll-target="#dockerfiles">Dockerfiles</a></li>
   <li><a href="#apptainer" id="toc-apptainer" class="nav-link" data-scroll-target="#apptainer">Apptainer</a></li>
   </ul></li>
+  <li><a href="#notes-from-excercises" id="toc-notes-from-excercises" class="nav-link" data-scroll-target="#notes-from-excercises">Notes from excercises</a>
+  <ul class="collapse">
+  <li><a href="#dockerfile-examples" id="toc-dockerfile-examples" class="nav-link" data-scroll-target="#dockerfile-examples">Dockerfile Examples</a></li>
+  <li><a href="#accessing-files-on-host" id="toc-accessing-files-on-host" class="nav-link" data-scroll-target="#accessing-files-on-host">Accessing files on host</a></li>
+  <li><a href="#entrypoint" id="toc-entrypoint" class="nav-link" data-scroll-target="#entrypoint">Entrypoint</a></li>
+  <li><a href="#useful-run-tags" id="toc-useful-run-tags" class="nav-link" data-scroll-target="#useful-run-tags">Useful run tags</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -290,6 +332,114 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Apptainer can access files in the host OS by default - less isolated.</p></li>
 <li><p>Easier to interface with GPUs, MPI, and system level modules.</p></li>
 </ul>
+</section>
+</section>
+<section id="notes-from-excercises" class="level2">
+<h2 class="anchored" data-anchor-id="notes-from-excercises">Notes from excercises</h2>
+<ul>
+<li><p>Download following instructions for Ubuntu if using WSL (recommended): https://docs.docker.com/engine/install/ubuntu/</p></li>
+<li><p>Always need to run <code>sudo docker</code> instead of <code>docker</code> for some reason to do with admin rights.</p></li>
+<li><p>Most docker commands follow the format</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker {image/container} {command}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image ls            <span class="co"># list of images</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker container ls <span class="at">-a</span>     <span class="co"># list of all containers</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image build </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image rm IMAGENAME  <span class="co"># remove an image, note corresponding container must be deleted first </span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker container prune     <span class="co"># remove all exited containers</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image pull IMAGENAME <span class="co"># get image from Docker Hub </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Containers are run from images. The image may have defined some default behaviour - this can be overidden by typing a command directly after the run command:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image pull alpine       <span class="co"># pull the alpine linux dist image</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker container run alpine    <span class="co"># run with default behaviour</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker container run alpine sh <span class="co"># run and enter sh (bash equivalent)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="dockerfile-examples" class="level3">
+<h3 class="anchored" data-anchor-id="dockerfile-examples">Dockerfile Examples</h3>
+<ul>
+<li><p>The dockerfile lives in the directory that you want to run from.</p></li>
+<li><p>A simple example is shown below:</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">FROM</span> alpine</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> apk add <span class="at">--update</span> python3 py3-pip python3-dev</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> pip install pandas <span class="at">--break-system-packages</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="ex">CMD</span> [<span class="st">"python3"</span>, <span class="st">"--version"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>- FROM alpine gives the base image to be used, in this case a linux dist
+
+- RUN apk add... runs the following commands in the alpine system, in this case installing python and pip
+
+- the --break-system-packages is sometimes needed if errors occur - sometimes creating a venv can also work
+
+- CMD is the command to run by default in the container. It is written as a list which contains the executable to run as its first element, optionally followed by any arguments as subsequent elements.</code></pre>
+<ul>
+<li>Dockerfiles are built using:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image build <span class="at">-t</span> USERNAME/CONTAINER_IMAGE_NAME PATH/TO/DOCKERFILE</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image build <span class="at">-t</span> sambarnett03/my_container .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>- image build is the command to build an image from a dockerfile. It requires the desired name of the image, and the location of the directory containing the dockerfile. If already in directory containing dockerfile, this is simply .
+
+- the -t tag tells the command to expect a name, idk why it was designed like that
+
+- the username is the one used on Docker Hub. If it does not match, the container is unable to be pushed to Docker Hub (but can still be used locally)</code></pre>
+<ul>
+<li>Images can be renamed using the tag command:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker image tag OLDNAME NEWNAME</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="accessing-files-on-host" class="level3">
+<h3 class="anchored" data-anchor-id="accessing-files-on-host">Accessing files on host</h3>
+<ul>
+<li><p>There are two ways: a mount, and a simple <code>COPY</code> command.</p></li>
+<li><p>Mounts: to run a mount, an additional argument to <code>docker container run</code> is used:</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>- `type=bind` specifies the type of mount. Pretty much always use a bind
+- `source=${PWD}` tells the mount which directory in the host computer to give access to - in this case ${PWD} gives the current working directory
+- `target=/temp` sets the name of directory to mirror the source in the containerised environment. So in this case the current working directory will be accessible in the container environment in a folder called /temp.</code></pre>
+<ul>
+<li>An <code>image run</code> command with this addition might look like:</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">docker</span> container run <span class="at">--mount</span> type=bind,source=<span class="va">${PWD}</span>,target=/temp sambarnett03/my_container python3 /temp/myfile.py</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<pre><code>- this runs myfile.py, originally stored in the current working directory of the host, in the container</code></pre>
+<ul>
+<li><p>Mounts also allow writing to the host system.</p></li>
+<li><p>The <code>COPY</code> command can be used inside the dockerfile:</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> file_in_local.py folder/in/container </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> sum.py /home       <span class="co"># example</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="entrypoint" class="level3">
+<h3 class="anchored" data-anchor-id="entrypoint">Entrypoint</h3>
+<ul>
+<li>The entrypoint command allows you to automatically run files while still being able to specify command line arguments.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This will give an error if command line arguments (CLAs) provided at run as the CLAs are interpreted as commands that replace those next to CD</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="ex">FROM</span> alpine</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> sum.py /home</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> apk add <span class="at">--update</span> python3 py3-pip python3-dev</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="ex">CD</span> [<span class="st">"python3"</span>, <span class="st">"/home/sum.py"</span>]</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co"># This should work. CMD['10', '11'] gives the default arguments used in the case none are supplied. The arguments next to ENTRYPOINT are ran irrespective of CLAs</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="ex">FROM</span> alpine</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="ex">COPY</span> sum.py /home</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="ex">RUN</span> apk add <span class="at">--update</span> python3 py3-pip python3-dev</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="ex">ENTRYPOINT</span> [<span class="st">"python3"</span>, <span class="st">"/home/sum.py"</span>]</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Give default arguments, in case none are supplied on</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># the command-line</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a><span class="ex">CMD</span> [<span class="st">"10"</span>, <span class="st">"11"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>Sometimes you don’t want to run an image’s <code>entrpoint</code>, in which case it can be overriden by specifying <code>--entrypoint</code> in the <code>docker run</code> command.</li>
+</ul>
+</section>
+<section id="useful-run-tags" class="level3">
+<h3 class="anchored" data-anchor-id="useful-run-tags">Useful run tags</h3>
+<ul>
+<li><code>-it</code>: run interactively, typically used in conjuction with <code>bash</code> or <code>sh</code> at the end of the command.</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> docker container run <span class="at">-it</span> my_image sh</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 
 
 </section>
