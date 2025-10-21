@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>am – My Lecture Notes</title>
+<title>quarto-input6760a4792d4569c2 – My Lecture Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16-10-25am.html">Lecture 4: Version Control with Git and Github</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-10-25.html">Lecture 1: Introduction</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -168,7 +168,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-10-25.html" class="sidebar-item-text sidebar-link">
+  <a href="./13-10-25.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lecture 1: Introduction</span></a>
   </div>
 </li>
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-10-25am.html" class="sidebar-item-text sidebar-link active">
+  <a href="./16-10-25am.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 4: Version Control with Git and Github</span></a>
   </div>
 </li>
@@ -214,6 +214,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Lecture 8: Packaging and Dependency Management</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-10-25pm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9: Containerisation with Docker</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -224,23 +230,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lecture-4-version-control-with-git-and-github" id="toc-lecture-4-version-control-with-git-and-github" class="nav-link active" data-scroll-target="#lecture-4-version-control-with-git-and-github">Lecture 4: Version Control with Git and Github</a>
+  <li><a href="#lecture-1-introduction" id="toc-lecture-1-introduction" class="nav-link active" data-scroll-target="#lecture-1-introduction">Lecture 1: Introduction</a></li>
+  <li><a href="#virtual-environments" id="toc-virtual-environments" class="nav-link" data-scroll-target="#virtual-environments">Virtual Environments</a>
   <ul class="collapse">
-  <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control">Version control</a></li>
-  <li><a href="#how-do-they-work" id="toc-how-do-they-work" class="nav-link" data-scroll-target="#how-do-they-work">How do they work</a></li>
-  <li><a href="#version-control-platforms" id="toc-version-control-platforms" class="nav-link" data-scroll-target="#version-control-platforms">Version Control Platforms</a></li>
-  <li><a href="#workflows" id="toc-workflows" class="nav-link" data-scroll-target="#workflows">Workflows</a></li>
-  <li><a href="#command-line-interface-cli" id="toc-command-line-interface-cli" class="nav-link" data-scroll-target="#command-line-interface-cli">Command Line Interface (CLI)</a></li>
-  </ul></li>
-  <li><a href="#notes-from-exercises" id="toc-notes-from-exercises" class="nav-link" data-scroll-target="#notes-from-exercises">Notes from exercises</a>
-  <ul class="collapse">
-  <li><a href="#setting-up-git" id="toc-setting-up-git" class="nav-link" data-scroll-target="#setting-up-git">Setting up Git</a></li>
-  <li><a href="#cloning-repositories" id="toc-cloning-repositories" class="nav-link" data-scroll-target="#cloning-repositories">Cloning repositories</a></li>
-  <li><a href="#initialising-your-own-repository" id="toc-initialising-your-own-repository" class="nav-link" data-scroll-target="#initialising-your-own-repository">Initialising your own repository</a></li>
-  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
-  <li><a href="#using-the-remote-branch" id="toc-using-the-remote-branch" class="nav-link" data-scroll-target="#using-the-remote-branch">Using the remote branch</a></li>
-  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches">Branches</a></li>
-  <li><a href="#ignoring-files" id="toc-ignoring-files" class="nav-link" data-scroll-target="#ignoring-files">Ignoring files</a></li>
+  <li><a href="#testing-style-for-pseudo-code" id="toc-testing-style-for-pseudo-code" class="nav-link" data-scroll-target="#testing-style-for-pseudo-code">Testing style for pseudo code</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -251,183 +244,50 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 
 
-<section id="lecture-4-version-control-with-git-and-github" class="level2">
-<h2 class="anchored" data-anchor-id="lecture-4-version-control-with-git-and-github">Lecture 4: Version Control with Git and Github</h2>
-<section id="version-control" class="level3">
-<h3 class="anchored" data-anchor-id="version-control">Version control</h3>
+<section id="lecture-1-introduction" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-1-introduction">Lecture 1: Introduction</h2>
 <ul>
-<li><p>A tool that tracks changes to raw text files.</p></li>
-<li><p>Records changes you made and the order in which you made them.</p></li>
-<li><p>Offers more efficient backup.</p></li>
-<li><p>Easy to roll back (all of part of) your work.</p></li>
-<li><p>Can share one version with collaborators whilst you work on another.</p></li>
-<li><p>Don’t add result/output files to version control - think about this when setting up file storage.</p></li>
-<li><p>Store code in separate files where possible. This allows two people to work on separate files, making merge conflicts less likely.</p></li>
-<li><p>Never store sensitive information in version control</p></li>
-</ul>
-</section>
-<section id="how-do-they-work" class="level3">
-<h3 class="anchored" data-anchor-id="how-do-they-work">How do they work</h3>
+<li><p>Software group do courses on CUDA and cloud computing, useful to ask if I need help: rse.ox.ac.uk, can sign onto courses.</p></li>
+<li><p>Software is important for reproducibility</p></li>
+<li><p>Difference between programming and engineering: programming is algorithms, syntax, individual, one line at a time. Engineering considers the life cycle of the software, maintenance, refactoring, considering stakeholders, building for the future etc.</p></li>
+<li><p>Waterfall model:</p>
 <ul>
-<li><p>Start by storing the original base version of the file.</p></li>
-<li><p>After that, only changes are stored.</p></li>
-<li><p>Two users make independent sets of changes, creating two different versions of the same document (called branches).</p></li>
-<li><p>Can merge different branches together onto the same base document.</p></li>
-</ul>
-</section>
-<section id="version-control-platforms" class="level3">
-<h3 class="anchored" data-anchor-id="version-control-platforms">Version Control Platforms</h3>
-<ul>
-<li><p>Services offered by companies which provide remote repositories to store your files. This protects files from fire, theft, etc.</p></li>
-<li><p>Separate but related to the version control software itself (git).</p></li>
-<li><p>Github is most popular. Gitlab also popular, but falling out of favour. Offers more control than github, but more difficult to use.</p></li>
-<li><p>Github student accounts offer free perks.</p></li>
-<li><p>To set up git and github - generate ‘ssh key pair’ to authenticate yout computer - essentially replaces passwords</p>
-<ul>
-<li>one private key that never leaves your computer</li>
-<li>one public key</li>
+<li>requirement analysis</li>
+<li>design</li>
+<li>implementation</li>
+<li>testing</li>
+<li>release</li>
+<li>maintenance not so useful in academia as too fixed, agile model turns this into a loop and attempts to make the minimum viable product, the requirements are always assessed and reconsidered.</li>
 </ul></li>
-<li><p>Anyone with the public key can verify that you own the private key without them having to see</p></li>
-<li><p>Upload the public one to Github as authentication</p></li>
-<li><p>Now can securely transfer</p></li>
-</ul>
-</section>
-<section id="workflows" class="level3">
-<h3 class="anchored" data-anchor-id="workflows">Workflows</h3>
+<li><p>Recommended book: facts and fallacies of software engineering</p></li>
+<li><p>All training on https://train.rse.ox.ac.uk/</p></li>
+<li><p>Notes for myself:</p>
 <ul>
-<li><p>Different groups have different ways of working with version control</p></li>
-<li><p>A workflow is agreed upon e.g have a main branch and a development branch that people contribute to before adding to main branch.</p></li>
-</ul>
-</section>
-<section id="command-line-interface-cli" class="level3">
-<h3 class="anchored" data-anchor-id="command-line-interface-cli">Command Line Interface (CLI)</h3>
-<ul>
-<li><p>Best way to use git for learning</p></li>
-<li><p>Necessary for HPC clusters</p></li>
-<li><p>Once comfortable, use as part of IDE graphically</p></li>
-</ul>
-</section>
-</section>
-<section id="notes-from-exercises" class="level2">
-<h2 class="anchored" data-anchor-id="notes-from-exercises">Notes from exercises</h2>
-<section id="setting-up-git" class="level3">
-<h3 class="anchored" data-anchor-id="setting-up-git">Setting up Git</h3>
-<p>When on a new machine, need to configure username, email, and default text editor to use when adding commit messages etc.</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Firstname Surname"</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"fsurname@university.ac.uk"</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> core.editor <span class="st">"nano -w"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The configuration settings can be view with</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Help can be accessed with</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">-h</span>       <span class="co"># and</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To back work up to GitHub, a pair of SSH keys is needed. To generate these, type</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This creates a folder in the root directory called /.ssh. Inside, there is a private and public key - the public ends with extension .pub. This can be printed in the terminal with</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This can be copied into github’s SSH settings (copy the entire output of cat).</p>
-</section>
-<section id="cloning-repositories" class="level3">
-<h3 class="anchored" data-anchor-id="cloning-repositories">Cloning repositories</h3>
-<ul>
-<li><p>Find the desired repo on Github, click on the Code box, then clone. Select SSH and copy the address given.</p></li>
-<li><p>In the terminal, type</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone {repository url}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</section>
-<section id="initialising-your-own-repository" class="level3">
-<h3 class="anchored" data-anchor-id="initialising-your-own-repository">Initialising your own repository</h3>
-<ul>
-<li><p>Enter an existing repo and type ‘git init’. This turns it into a git repo, which can be verified with ‘ls -a’ to see a .git folder.</p></li>
-<li><p>Next, make an empty repo on GitHub and name it. Then copy the SSH url option and type</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin {ssh url}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><p>If the repo already contains files, they need to be added and committed. This can be done with ‘git add .’, then git commit -m ‘your commit message’. ‘git add .’ adds all files that have been changed (in this case every file in the repo).</p></li>
-<li><p>Once the commits have been made, they can be pushed to github with</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The origin main connects the local main branch with the main branch of the remote repo. The -u saves this as the default connection for all future pushes.</p>
-</section>
-<section id="workflow" class="level3">
-<h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
-<ul>
-<li>The general workflow in Git is:
-<ul>
-<li>make a change to a file</li>
-<li>add all desired changes to the staging area</li>
-<li>commit all changes in staging area (saves these changes)</li>
-<li>push these changes to the remote branch</li>
-</ul></li>
-<li>Useful commands include:
-<ul>
-<li>git status: shows the changes in the staging area to be committed</li>
-<li>git diff: shows an overview of the changes made to a file. Can view changes compared with versions saved in older commits using git diff HEAD~n filename, where n is the number of commits prior you want to check. Alternatively, you can use the identifier of the commit you want to compare with (obtained from git log)</li>
-<li>git log: shows the history of the repo (previous commits and pushes etc)</li>
-<li>git restore: returns the previous state of a file (obtained from last commit). git checkout
-
-filename can be used to restore a file from any previously saved commit.</li>
+<li>try to include unit testing</li>
+<li>use WSl from day 1</li>
+<li>how to include pseudo code in quarto</li>
+<li>learn about testing during programme</li>
 </ul></li>
 </ul>
 </section>
-<section id="using-the-remote-branch" class="level3">
-<h3 class="anchored" data-anchor-id="using-the-remote-branch">Using the remote branch</h3>
-<ul>
-<li>If a local branch is already connected with the corresponding remote branch (e.g main local is connected with main remote), then the command used is</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>If it is the first time pushing to a new branch</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin {desired name of remote branch}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The -u sets this behaviour as default for this branch.</p>
-<ul>
-<li>A push can fail if a conflict between the local and remote branches occurs. This typically happens if the same lines of the same file is edited both on the remote branch and on the local. To fix this, we use ‘git pull’ to pull the new file, fix the conflicts on our own pc, then push again once they have been resolved. Note when git pull is used for the first time, a default method for merging may be required. In this case, the following and try ‘git pull’ again</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase false</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>To mitigate conflicts, code should be split into multiple files where possible, and separate branches be used.</li>
-</ul>
-</section>
-<section id="branches" class="level3">
-<h3 class="anchored" data-anchor-id="branches">Branches</h3>
-<ul>
-<li>To view current branches, type</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The current branch is indicated with an *.</p>
-<ul>
-<li>To create a new branch, type</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch {new branch name}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>To switch branches type</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch {branch name}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>To merge branches from branch a to branch b, navigate to branch a and type</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge {branch name}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>This can be followed by git push to update the remote branch as usual.</p>
-<ul>
-<li>For larger projects, its best to use a pull request to merge branches. When a new push has been made to a branch, Github displays a banner saying ‘Compare and Pull Request’. This does a similar thing to git merge, but gives a graphical UI that allows notes to be made, requests for senior colleagues to check over work, and more.</li>
-</ul>
-</section>
-<section id="ignoring-files" class="level3">
-<h3 class="anchored" data-anchor-id="ignoring-files">Ignoring files</h3>
-<ul>
-<li><p>To stop git tracking certain files, a file called .gitignore can be made in the root directory of the project.</p></li>
-<li><p>The contents of the file may look like</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">*.dat</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">results/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>In this case, all files ending .dat, and all files within the results folder, will not be tracked by git.</p>
-<ul>
-<li><p>This is useful as typically data files and other output files should not be tracked using git as it may take up lots of disk space, and distracts from the relevent details.</p></li>
-<li><p>Empty folder are not pushed to git, e.g the results folder if all contents have been added to .gitignore, the folder will not appear in the remote branch. To fix this, a file called .gitkeep can be added to folder. We then add this to the commit using</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-f</span> folder/.gitkeep</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>Note that the -f (force) is required to overide the .gitignore instructions. This can be commited and pushed. The folder should now appear in the remote branch</p>
+<section id="virtual-environments" class="level2">
+<h2 class="anchored" data-anchor-id="virtual-environments">Virtual Environments</h2>
+<p>To create a virtual environment, type</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv {desired name of venv}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> {desired name of venv}/bin/activate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The first line of code creates the virtual environment. It makes a folder in the cwd that contains all the info and libraries regarding the virtual environment. The second line of code actually activates the virtual environment.</p>
+<p>To deactivate the virtual environment, type:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">deactivate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To delete a virtual environment, move into the directory containing its folder and type</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> {name of venv}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="testing-style-for-pseudo-code" class="level3">
+<h3 class="anchored" data-anchor-id="testing-style-for-pseudo-code">Testing style for pseudo code</h3>
+<details>
+<summary>
+Pseudocode
+</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> vcf_file <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/#CHROM/,$p'</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f</span> 1,2,4,5 <span class="op">&gt;</span> variant_info.txt </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
 
 
 </section>
@@ -507,7 +367,7 @@ filename can be used to restore a file from any previously saved commit.</li>
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/sambarnett03\.github\.io\/SoftwareEngineeringLectureNotes\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

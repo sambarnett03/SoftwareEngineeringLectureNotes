@@ -105,6 +105,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 </head>
 
@@ -142,7 +171,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20-10-25pm.html">Lecture 8: Packaging and Dependency Management</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./14-10-25-pm.html">Lecture 3: Functional Programming</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -180,7 +209,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-10-25-pm.html" class="sidebar-item-text sidebar-link">
+  <a href="./14-10-25-pm.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lecture 3: Functional Programming</span></a>
   </div>
 </li>
@@ -210,8 +239,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./20-10-25pm.html" class="sidebar-item-text sidebar-link active">
+  <a href="./20-10-25pm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 8: Packaging and Dependency Management</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-10-25pm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9: Containerisation with Docker</span></a>
   </div>
 </li>
     </ul>
@@ -224,16 +259,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#package-dependencies" id="toc-package-dependencies" class="nav-link active" data-scroll-target="#package-dependencies">Package Dependencies</a></li>
-  <li><a href="#package-managers" id="toc-package-managers" class="nav-link" data-scroll-target="#package-managers">Package managers</a></li>
-  <li><a href="#sharing-packages" id="toc-sharing-packages" class="nav-link" data-scroll-target="#sharing-packages">Sharing packages</a></li>
-  <li><a href="#maintaing-python-packages" id="toc-maintaing-python-packages" class="nav-link" data-scroll-target="#maintaing-python-packages">Maintaing Python packages</a></li>
-  <li><a href="#building-a-python-package" id="toc-building-a-python-package" class="nav-link" data-scroll-target="#building-a-python-package">Building a Python package</a></li>
-  <li><a href="#notes-from-excercises" id="toc-notes-from-excercises" class="nav-link" data-scroll-target="#notes-from-excercises">Notes from excercises</a>
-  <ul class="collapse">
-  <li><a href="#setup-tools-config-files-and-pip" id="toc-setup-tools-config-files-and-pip" class="nav-link" data-scroll-target="#setup-tools-config-files-and-pip">Setup tools, config files and pip</a></li>
-  <li><a href="#build-wheels-and-source-distribution" id="toc-build-wheels-and-source-distribution" class="nav-link" data-scroll-target="#build-wheels-and-source-distribution">Build, wheels and source distribution</a></li>
-  </ul></li>
+  <li><a href="#pure-functions" id="toc-pure-functions" class="nav-link active" data-scroll-target="#pure-functions">Pure functions</a></li>
+  <li><a href="#why-avoid-impure-functions" id="toc-why-avoid-impure-functions" class="nav-link" data-scroll-target="#why-avoid-impure-functions">Why avoid impure functions</a></li>
+  <li><a href="#downsides-of-functional-programming" id="toc-downsides-of-functional-programming" class="nav-link" data-scroll-target="#downsides-of-functional-programming">Downsides of functional programming</a></li>
+  <li><a href="#notable-functional-languages" id="toc-notable-functional-languages" class="nav-link" data-scroll-target="#notable-functional-languages">Notable functional languages</a></li>
+  <li><a href="#list-comprehensions-and-generators" id="toc-list-comprehensions-and-generators" class="nav-link" data-scroll-target="#list-comprehensions-and-generators">List comprehensions and generators</a></li>
+  <li><a href="#decorators" id="toc-decorators" class="nav-link" data-scroll-target="#decorators">Decorators</a></li>
+  <li><a href="#recursion" id="toc-recursion" class="nav-link" data-scroll-target="#recursion">Recursion</a></li>
+  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
   </ul>
 </nav>
     </div>
@@ -242,7 +275,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Lecture 8: Packaging and Dependency Management</h1>
+<h1 class="title">Lecture 3: Functional Programming</h1>
 </div>
 
 
@@ -259,160 +292,140 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<ul>
-<li>Packages are a bundle of code, resources and metadata (e.g version of python needed etc), e.g numpy, pandas etc.</li>
-</ul>
-<section id="package-dependencies" class="level3">
-<h3 class="anchored" data-anchor-id="package-dependencies">Package Dependencies</h3>
-<ul>
-<li><p>Software depends on other software.</p></li>
-<li><p>Packages define any that they rely on in metadata.</p></li>
-<li><p>Dependencies are typically installed alongside the parent package.</p></li>
-</ul>
+<p>Python is not a functional programming language so won’t cover in detail. It involves programming with <em>pure</em> functions and higher order functions.</p>
+<section id="pure-functions" class="level3">
+<h3 class="anchored" data-anchor-id="pure-functions">Pure functions</h3>
+<p>Pure functions are referentially transparent - they always give the same output for the same inputs. It also means you could replace the entire function in the code with its output and it wouldn’t effect its result. e.g sqrt(4) is pure, but the function today() -&gt; 14/10/2025 is not a pure function as its return is different indepedent of the inputs. This also means a pure function cannot have any side effects.</p>
+<p>Impure things include: - changing the value of a variable - modifying a data structure in place - printing to the console - writing to a file - sending data over a network - reading from a file or keyboard - fetching data from a database or API - getting the current time or date - generating a random number</p>
+<p>These are obviously useful. Most useful programmes are impure.</p>
 </section>
-<section id="package-managers" class="level3">
-<h3 class="anchored" data-anchor-id="package-managers">Package managers</h3>
-<ul>
-<li><p>Almost every language has at least one.</p></li>
-<li><p>In python, pip and conda are good examples.</p></li>
-<li><p>These handle package install, upgrading and removing.</p></li>
-<li><p>They tend to manage dependencies automatically.</p></li>
-<li><p>They can try to solve dependencies automatically.</p></li>
-</ul>
+<section id="why-avoid-impure-functions" class="level3">
+<h3 class="anchored" data-anchor-id="why-avoid-impure-functions">Why avoid impure functions</h3>
+<p>Mutablitility is the source of bugs. By limiting the things in your program that can be changed and the parts of it that can change them, bugs become easier to track.</p>
+<p>Pure functions are easily testable because they give the same output for a given input. They can also be composed to create a new function. They are also easy to parallelise. e.g h(x) = g(x) + f(x), g and f can be run in parallel easily since the order in which they are run does not matter.</p>
 </section>
-<section id="sharing-packages" class="level3">
-<h3 class="anchored" data-anchor-id="sharing-packages">Sharing packages</h3>
-<ul>
-<li><p>Developers upload packages to online repositories, in Python this is PyPI - python package inventory.</p></li>
-<li><p>Package managers can search these repositories and download packages.</p></li>
-</ul>
-</section>
-<section id="maintaing-python-packages" class="level3">
-<h3 class="anchored" data-anchor-id="maintaing-python-packages">Maintaing Python packages</h3>
-<ul>
-<li><p>There are standard tools:</p>
-<ul>
-<li>setuptools / wheel / twine are libraries that help</li>
-<li>setup.py and setup.cfg - traditional building scripts (project info + dependencies)</li>
-<li>pyproject.toml - modern standard for build requirements, simpler and more flexible than setup.py</li>
-<li>pip is standard package manager, supports both pyproject.toml and setup.py</li>
-<li>can use other tools on top of these fundamentals, e.g conda, uv etc. These don’t provided added functionality, just make it easier. uv is best of these</li>
-</ul></li>
-<li><p>When building a package, you can either have a source distribution (sdists) or wheel distributions. sdists just uploads your original scripts to pypi. Wheel distributions allow you to package additional things as well, including compiled code e.g c++ with python wrapper. These wheels may be os specific.</p></li>
-<li><p>Sharing a package - build, register on Test PyPI, upload via twine, test install.</p></li>
-<li><p>Usually never actually upload to PyPI from CLI, usually use GitHub Actions.</p></li>
-</ul>
-</section>
-<section id="building-a-python-package" class="level3">
-<h3 class="anchored" data-anchor-id="building-a-python-package">Building a Python package</h3>
-<ul>
-<li><p>Very specific structure.</p></li>
-<li><p>Base directory :</p>
-<ul>
-<li>source code directory (whose name is name of package)
-<ul>
-<li>dunder init.py (two underscores either side). Can be empty, or can be used to give user specific access to certain functions and not to others</li>
-<li>then sub folders, each with their own init.pys</li>
-</ul></li>
-<li>metadata files (including pyproject.toml)</li>
-<li>docs / tests folders</li>
-<li>readme.md</li>
-</ul></li>
-<li><p>Typically you use a template when building a library, you rarely start from scratch. cookiecutter is a popular tool for generating project skeleton. However, typically introduce more functionality then necessary. uv offers good templates.</p></li>
-</ul>
-</section>
-<section id="notes-from-excercises" class="level2">
-<h2 class="anchored" data-anchor-id="notes-from-excercises">Notes from excercises</h2>
-<ul>
-<li>The _ _init__.py gives access to functions which can be accessed with dot notation. In the following example, users can access func1 and func2:</li>
-</ul>
-<div id="ff08b32b" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">#parent_directory/__init__.py</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .script1 <span class="im">import</span> func1</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> .script2 <span class="im">import</span> func2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="downsides-of-functional-programming" class="level3">
+<h3 class="anchored" data-anchor-id="downsides-of-functional-programming">Downsides of functional programming</h3>
+<p>If you never mutate anything, you require lots of copies of data which can be costly. Work arounds include: - using smart data structures that avoid copying where possible - using mutablility under the hood while providing functional style interface</p>
+<p>pandas dataframes are an example of a smart data structure. It offers a functional interface, but uses non-functional features under the hood wnad won’t actually copy data unless it needs to.</p>
+<p>pandas example:</p>
+<div id="0ca8b587" class="cell" data-execution_count="1">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'A'</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], <span class="st">'B'</span>:[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]}</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(data)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df1.rename(columns <span class="op">=</span> {<span class="st">'A'</span> : <span class="st">'a'</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
-<ul>
-<li>A common error can occur when calling a package from a different folder: ModuleNotFoundError. This is usually because the package directory is not in the system path. A quick fix to this is:</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">import</span> sys </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sys.path.append</span><span class="er">(</span><span class="st">'path/to/folder'</span><span class="kw">)</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>A better solution is to make the directory into a package using setuptools. It can then be pip installed into the virtual environment.</li>
-</ul>
-<section id="setup-tools-config-files-and-pip" class="level3">
-<h3 class="anchored" data-anchor-id="setup-tools-config-files-and-pip">Setup tools, config files and pip</h3>
-<ul>
-<li>In order to create a package that can be pip installed, a pyproject.toml file is required. This contains some metadata about the package. An example is below:</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode toml code-with-copy"><code class="sourceCode toml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">[build-system]</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">requires</span> <span class="op">=</span> <span class="op">[</span><span class="st">"setuptools"</span><span class="op">,</span> <span class="st">"wheel"</span><span class="op">]</span> <span class="co"># setuptools and wheel are necessary for the build</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">[project]</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="dt">name</span> <span class="op">=</span> <span class="st">"tstools"</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="dt">version</span> <span class="op">=</span> <span class="st">"0.1"</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="dt">description</span> <span class="op">=</span> <span class="st">"A package to analyse timeseries"</span></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="dt">authors</span> <span class="op">=</span> <span class="op">[</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    <span class="op">{</span><span class="dt">name</span><span class="op"> =</span> <span class="st">"Spam Eggs"</span><span class="op">, </span><span class="dt">email</span><span class="op"> =</span> <span class="st">"spam.eggs@email.com"</span><span class="op">}</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="op">]</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="dt">readme</span> <span class="op">=</span> <span class="st">"README.md"</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="dt">license</span> <span class="op">=</span> <span class="op">{</span><span class="dt">text</span><span class="op"> =</span> <span class="st">"MIT"</span><span class="op">}</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="dt">dependencies</span> <span class="op">=</span> <span class="op">[</span><span class="st">"numpy"</span><span class="op">,</span> <span class="st">"matplotlib"</span><span class="op">,</span> <span class="st">"scipy"</span><span class="op">]</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="kw">[project.urls]</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="dt">Source</span> <span class="op">=</span> <span class="st">"example.com"</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a><span class="kw">[project.scripts]</span> <span class="co"># Define scripts here if you have any</span></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="kw">[project.optional-dependencies]</span> <span class="co"># Define optional dependencies here if you have any</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><p>The folder structure should look like:</p>
-<ul>
-<li>mypackage_dist/
-<ul>
-<li>pyproject.toml</li>
-<li>mypackage/
-<ul>
-<li>init</li>
-<li>scripts</li>
-<li>tests</li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><p>Now can pip install path/to/pyproject.toml</p></li>
-<li><p>You can pip install in editable mode, which means that changes in the package source code are automatically reflected by pip - you don’t need to reinstall after every change:</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in directory to mypackage_dist/</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install <span class="at">-e</span> .</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>is functional because it returns df2 separately as a new dataframe without changing df1. Under the hood, however, data is changed for optimisation reasons</p>
 </section>
-<section id="build-wheels-and-source-distribution" class="level3">
-<h3 class="anchored" data-anchor-id="build-wheels-and-source-distribution">Build, wheels and source distribution</h3>
+<section id="notable-functional-languages" class="level3">
+<h3 class="anchored" data-anchor-id="notable-functional-languages">Notable functional languages</h3>
 <ul>
-<li>The build library allows you to easily prepare your project to be uploaded to PyPI:</li>
+<li>Lisp</li>
+<li>Haskell</li>
+<li>Scala</li>
+<li>F#</li>
+<li>Google Earth Engine?</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install build wheel</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> build <span class="at">--sdist</span>     <span class="co"># builds a sdist </span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> build <span class="at">--wheel</span>     <span class="co"># builds a wheel</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> build             <span class="co"># builds both</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li><p>sdists are sufficient for packages in pure python.</p></li>
-<li><p>wheels are used when there is precompiled code as well as pure python.</p></li>
-<li><p>Both methods produce archive files (like zip and tar files), with the files in the original package plus some extra metadata.</p></li>
-<li><p>To install a wheel</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python</span> <span class="at">-m</span> pip install packageroot/dist/packagename<span class="pp">*</span>.whl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Twine is used to publish packages to PyPI.</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install twine</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="ex">twin</span> upload path/to/.whl</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Repos can be uploaded to testpypi using</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run from within packagename_dist folder so dist can be seen</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">twine</span> upload <span class="at">--repository</span> testpypi dist/<span class="pp">*</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>First-class functions are functions that can be passed as arguments, returned from functions, or assigned to variables.</p>
+<p>Lambda functions are small, unnamed functions defined in the normal flow of the program. They are typically defined at the point of use, unlike usual functions</p>
+<p>e.g</p>
+<div id="d70d8edc" class="cell" data-execution_count="2">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first class functions</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greed():</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Hello'</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>hello <span class="op">=</span> greet</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(hello())</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># lambda functions</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>add <span class="op">=</span> <span class="kw">lambda</span> x, y: x <span class="op">+</span> y</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(add(<span class="dv">2</span>, <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Higher order functions are functions that take other arguments as functions e.g map, filter, reduce functions in pythons. These use lazy evaluation - when you call map, it returns an object (generator), but does not actually calculate the map until you for it. In the example below, the list() call executes the generator. Lazy execution is used so that different functions can be stacked to create complex generators, then computed all at once. This means the input only needs to be looped over once.</p>
+<div id="5f57337a" class="cell" data-execution_count="3">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># map</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>squared <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, numbers))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(squared) </span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># output [1, 4, 9, 16, 25]</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># reduce</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>product <span class="op">=</span> <span class="bu">reduce</span>((<span class="kw">lambda</span> x, y: x <span class="op">*</span> y), numbers)</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(product)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># output 120</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Note that sum, mean, stdev, max, min, len etc are examples of the reduce function</p>
+<p>Any time you have a collection of things and you need to transform it into a new collection of things, consider using higher order functions (map, filter, reduce) rather than using loops. This allows parallelisation as the functions are pure, clearer code, and less likely to create bugs.</p>
+</section>
+<section id="list-comprehensions-and-generators" class="level3">
+<h3 class="anchored" data-anchor-id="list-comprehensions-and-generators">List comprehensions and generators</h3>
+<p>More pythonic way to do maps. Generators are similar to list comprehensions but are lazily executed so won’t generate new list unless asked to, useful for composition.</p>
+<div id="1ac88b62" class="cell" data-execution_count="4">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>squared <span class="op">=</span> [x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> numbers]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>squared_dict <span class="op">=</span> {x: x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> numbers}</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># output {1:1, 2:4, 3:9, 4:16, 5:25}</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>squared_gen <span class="op">=</span> (x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> numbers)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> squared_gen:</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(num)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</section>
+<section id="decorators" class="level3">
+<h3 class="anchored" data-anchor-id="decorators">Decorators</h3>
+<p>Higher order functions that take another function as an argument, modifies it, then returns it.</p>
+<p>Example use case: have a code that depends on a database and you want to test the code with some test data. You could use a decorator that sets up database first and adds the test data, calls test function (which is already defined), then cleans up after itself, deleting the test data added.</p>
+<p>Simple example:</p>
+<div id="528de94b" class="cell" data-execution_count="5">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_decorator(func):</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper():     </span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'before func call'</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        func()</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'after func call'</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> wrapper</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">@my_decorator</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> say_hello():</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Hello'</span>)</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;say_hello()</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#before function call</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Hello</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#After function </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>So modifies say_hello() to include print statements - in this way we can modify functions to have things happening before and after</p>
+</section>
+<section id="recursion" class="level3">
+<h3 class="anchored" data-anchor-id="recursion">Recursion</h3>
+<p>Calling a function from within itself</p>
+<details>
+<summary>
+Code
+</summary>
+<div id="a7d50931" class="cell" data-execution_count="6">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recursive</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n):</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n<span class="op">==</span><span class="dv">0</span>:</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial(n<span class="op">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+This works because of the mathematical definition of recursion <span class="math display">\[
+\begin{align}
+&amp;0! = 1 \\
+&amp;n! = n \times (n-1)!
+\end{align}
+\]</span>
+</details>
+</section>
+<section id="summary" class="level3">
+<h3 class="anchored" data-anchor-id="summary">Summary</h3>
+<p>Functional programming improves - testability - composability - parallelisability</p>
+<p>In functional programming, we shift from an imperative mindset (‘do this, do that, do this’) to a declarative one (‘here is what I need’) and it becomes about chaining transformation to the data.</p>
 
 
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -489,7 +502,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/sambarnett03\.github\.io\/SoftwareEngineeringLectureNotes\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

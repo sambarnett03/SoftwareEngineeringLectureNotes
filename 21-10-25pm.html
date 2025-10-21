@@ -20,41 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -105,35 +70,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -171,7 +107,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./14-10-25-pm.html">Lecture 3: Functional Programming</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21-10-25pm.html">Lecture 9: Containerisation with Docker</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -209,7 +145,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./14-10-25-pm.html" class="sidebar-item-text sidebar-link active">
+  <a href="./14-10-25-pm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 3: Functional Programming</span></a>
   </div>
 </li>
@@ -243,6 +179,12 @@ window.Quarto = {
  <span class="menu-text">Lecture 8: Packaging and Dependency Management</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-10-25pm.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lecture 9: Containerisation with Docker</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -253,173 +195,104 @@ window.Quarto = {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#pure-functions" id="toc-pure-functions" class="nav-link active" data-scroll-target="#pure-functions">Pure functions</a></li>
-  <li><a href="#why-avoid-impure-functions" id="toc-why-avoid-impure-functions" class="nav-link" data-scroll-target="#why-avoid-impure-functions">Why avoid impure functions</a></li>
-  <li><a href="#downsides-of-functional-programming" id="toc-downsides-of-functional-programming" class="nav-link" data-scroll-target="#downsides-of-functional-programming">Downsides of functional programming</a></li>
-  <li><a href="#notable-functional-languages" id="toc-notable-functional-languages" class="nav-link" data-scroll-target="#notable-functional-languages">Notable functional languages</a></li>
-  <li><a href="#list-comprehensions-and-generators" id="toc-list-comprehensions-and-generators" class="nav-link" data-scroll-target="#list-comprehensions-and-generators">List comprehensions and generators</a></li>
-  <li><a href="#decorators" id="toc-decorators" class="nav-link" data-scroll-target="#decorators">Decorators</a></li>
-  <li><a href="#recursion" id="toc-recursion" class="nav-link" data-scroll-target="#recursion">Recursion</a></li>
-  <li><a href="#summary" id="toc-summary" class="nav-link" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#lecture-9-containerisation-with-docker" id="toc-lecture-9-containerisation-with-docker" class="nav-link active" data-scroll-target="#lecture-9-containerisation-with-docker">Lecture 9: Containerisation with Docker</a>
+  <ul class="collapse">
+  <li><a href="#docker-glossary" id="toc-docker-glossary" class="nav-link" data-scroll-target="#docker-glossary">Docker glossary</a></li>
+  <li><a href="#uses" id="toc-uses" class="nav-link" data-scroll-target="#uses">Uses</a></li>
+  <li><a href="#docker-cli" id="toc-docker-cli" class="nav-link" data-scroll-target="#docker-cli">Docker CLI</a></li>
+  <li><a href="#docker-hub" id="toc-docker-hub" class="nav-link" data-scroll-target="#docker-hub">Docker Hub</a></li>
+  <li><a href="#dockerfiles" id="toc-dockerfiles" class="nav-link" data-scroll-target="#dockerfiles">Dockerfiles</a></li>
+  <li><a href="#apptainer" id="toc-apptainer" class="nav-link" data-scroll-target="#apptainer">Apptainer</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Lecture 3: Functional Programming</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
-<p>Python is not a functional programming language so won’t cover in detail. It involves programming with <em>pure</em> functions and higher order functions.</p>
-<section id="pure-functions" class="level3">
-<h3 class="anchored" data-anchor-id="pure-functions">Pure functions</h3>
-<p>Pure functions are referentially transparent - they always give the same output for the same inputs. It also means you could replace the entire function in the code with its output and it wouldn’t effect its result. e.g sqrt(4) is pure, but the function today() -&gt; 14/10/2025 is not a pure function as its return is different indepedent of the inputs. This also means a pure function cannot have any side effects.</p>
-<p>Impure things include: - changing the value of a variable - modifying a data structure in place - printing to the console - writing to a file - sending data over a network - reading from a file or keyboard - fetching data from a database or API - getting the current time or date - generating a random number</p>
-<p>These are obviously useful. Most useful programmes are impure.</p>
-</section>
-<section id="why-avoid-impure-functions" class="level3">
-<h3 class="anchored" data-anchor-id="why-avoid-impure-functions">Why avoid impure functions</h3>
-<p>Mutablitility is the source of bugs. By limiting the things in your program that can be changed and the parts of it that can change them, bugs become easier to track.</p>
-<p>Pure functions are easily testable because they give the same output for a given input. They can also be composed to create a new function. They are also easy to parallelise. e.g h(x) = g(x) + f(x), g and f can be run in parallel easily since the order in which they are run does not matter.</p>
-</section>
-<section id="downsides-of-functional-programming" class="level3">
-<h3 class="anchored" data-anchor-id="downsides-of-functional-programming">Downsides of functional programming</h3>
-<p>If you never mutate anything, you require lots of copies of data which can be costly. Work arounds include: - using smart data structures that avoid copying where possible - using mutablility under the hood while providing functional style interface</p>
-<p>pandas dataframes are an example of a smart data structure. It offers a functional interface, but uses non-functional features under the hood wnad won’t actually copy data unless it needs to.</p>
-<p>pandas example:</p>
-<div id="a5253b62" class="cell" data-execution_count="1">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>data <span class="op">=</span> {<span class="st">'A'</span>: [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>], <span class="st">'B'</span>:[<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>]}</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>df1 <span class="op">=</span> pd.DataFrame(data)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>df2 <span class="op">=</span> df1.rename(columns <span class="op">=</span> {<span class="st">'A'</span> : <span class="st">'a'</span>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>is functional because it returns df2 separately as a new dataframe without changing df1. Under the hood, however, data is changed for optimisation reasons</p>
-</section>
-<section id="notable-functional-languages" class="level3">
-<h3 class="anchored" data-anchor-id="notable-functional-languages">Notable functional languages</h3>
+<section id="lecture-9-containerisation-with-docker" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-9-containerisation-with-docker">Lecture 9: Containerisation with Docker</h2>
 <ul>
-<li>Lisp</li>
-<li>Haskell</li>
-<li>Scala</li>
-<li>F#</li>
-<li>Google Earth Engine?</li>
+<li><p>Note Docker is only one tool for containersiation - HPCs typically use others.</p></li>
+<li><p>Sort of an extension to virtual environments, allowing access to system level libraries. One step down from an entire virtual machine.</p></li>
+<li><p>Containers are lightweight versions of virtual machines, utilising the host’s Linux kernel. Virtual machines come with their own kernel (hence more heavyweight, uses more storage, takes longer to run etc.)</p></li>
+<li><p>A container image is the template or ‘recipe’ for a container, providing instructions to start a running copy of the container.</p></li>
+<li><p>Is basically lets you define once what the very specific requirements for a package are, and keep this constant no matter what changes occur to the host operating system.</p></li>
 </ul>
-<p>First-class functions are functions that can be passed as arguments, returned from functions, or assigned to variables.</p>
-<p>Lambda functions are small, unnamed functions defined in the normal flow of the program. They are typically defined at the point of use, unlike usual functions</p>
-<p>e.g</p>
-<div id="df18625c" class="cell" data-execution_count="2">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first class functions</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> greed():</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="st">'Hello'</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>hello <span class="op">=</span> greet</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(hello())</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># lambda functions</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>add <span class="op">=</span> <span class="kw">lambda</span> x, y: x <span class="op">+</span> y</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(add(<span class="dv">2</span>, <span class="dv">3</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Higher order functions are functions that take other arguments as functions e.g map, filter, reduce functions in pythons. These use lazy evaluation - when you call map, it returns an object (generator), but does not actually calculate the map until you for it. In the example below, the list() call executes the generator. Lazy execution is used so that different functions can be stacked to create complex generators, then computed all at once. This means the input only needs to be looped over once.</p>
-<div id="58548a80" class="cell" data-execution_count="3">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="op">=</span> [<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>]</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># map</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>squared <span class="op">=</span> <span class="bu">list</span>(<span class="bu">map</span>(<span class="kw">lambda</span> x: x<span class="op">**</span><span class="dv">2</span>, numbers))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(squared) </span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># output [1, 4, 9, 16, 25]</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># reduce</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> functools <span class="im">import</span> <span class="bu">reduce</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>product <span class="op">=</span> <span class="bu">reduce</span>((<span class="kw">lambda</span> x, y: x <span class="op">*</span> y), numbers)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(product)</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># output 120</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>Note that sum, mean, stdev, max, min, len etc are examples of the reduce function</p>
-<p>Any time you have a collection of things and you need to transform it into a new collection of things, consider using higher order functions (map, filter, reduce) rather than using loops. This allows parallelisation as the functions are pure, clearer code, and less likely to create bugs.</p>
+<section id="docker-glossary" class="level3">
+<h3 class="anchored" data-anchor-id="docker-glossary">Docker glossary</h3>
+<ul>
+<li><p>Container: self contained computational environment - docker run is command line argument for this.</p></li>
+<li><p>Image: read-only set of layers containing files / libraries / deps needed to run software. Created with docker build.</p></li>
+<li><p>Dockerfile: a textfile describing the commands to build your environment. Sort of like github actions workflow.</p></li>
+<li><p>Docker repo: a server that stores and lets you distribute Docker images e.g Docker hub.</p></li>
+<li><p>Typical workflow: dockerfile -&gt; docker build -&gt; image -&gt; docker run / push -&gt; container / rep</p></li>
+</ul>
 </section>
-<section id="list-comprehensions-and-generators" class="level3">
-<h3 class="anchored" data-anchor-id="list-comprehensions-and-generators">List comprehensions and generators</h3>
-<p>More pythonic way to do maps. Generators are similar to list comprehensions but are lazily executed so won’t generate new list unless asked to, useful for composition.</p>
-<div id="6bef6e68" class="cell" data-execution_count="4">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>squared <span class="op">=</span> [x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> numbers]</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>squared_dict <span class="op">=</span> {x: x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> numbers}</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># output {1:1, 2:4, 3:9, 4:16, 5:25}</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>squared_gen <span class="op">=</span> (x<span class="op">**</span><span class="dv">2</span> <span class="cf">for</span> x <span class="kw">in</span> numbers)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> num <span class="kw">in</span> squared_gen:</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(num)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
+<section id="uses" class="level3">
+<h3 class="anchored" data-anchor-id="uses">Uses</h3>
+<ul>
+<li><p>Say you want to compare various versions of pytorch - can find official pytorch image on Docker hub and download each version as separate image that won’t interfere with each other.</p></li>
+<li><p>Very good way to keep software running indefinetly - don’t need to worry about maintainence and updated dependencies etc. Good for reproducability.</p></li>
+<li><p>Good for maintaining developement environments acorss multipls OS.</p></li>
+<li><p>Not well suited to HPCs</p></li>
+</ul>
 </section>
-<section id="decorators" class="level3">
-<h3 class="anchored" data-anchor-id="decorators">Decorators</h3>
-<p>Higher order functions that take another function as an argument, modifies it, then returns it.</p>
-<p>Example use case: have a code that depends on a database and you want to test the code with some test data. You could use a decorator that sets up database first and adds the test data, calls test function (which is already defined), then cleans up after itself, deleting the test data added.</p>
-<p>Simple example:</p>
-<div id="d2158d8b" class="cell" data-execution_count="5">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> my_decorator(func):</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> wrapper():     </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'before func call'</span>)</span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>        func()</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">'after func call'</span>)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> wrapper</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="at">@my_decorator</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> say_hello():</span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'Hello'</span>)</span>
-<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="co">#&gt;say_hello()</span></span>
-<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="co">#before function call</span></span>
-<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a><span class="co">#Hello</span></span>
-<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="co">#After function </span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-<p>So modifies say_hello() to include print statements - in this way we can modify functions to have things happening before and after</p>
+<section id="docker-cli" class="level3">
+<h3 class="anchored" data-anchor-id="docker-cli">Docker CLI</h3>
+<ul>
+<li><p>recommended to use Docker Desktop, which also gives access to CLI.</p></li>
+<li><p>docker container and docker image are used to manage containers and container images respectively.</p></li>
+<li><p>images and containers can take up a lot of disk space, docker prune cleans this up.</p></li>
+<li><p>docker ps and docker container ls give info on currently running containers.</p></li>
+<li><p>docker image pull downloads from image from internet. It is always recommended to look on Docker Hub and find the official recommended version of the container you’re looking for.</p></li>
+<li><p>docker image ls lists docker container images on your computer.</p></li>
+<li><p>docker container run create and start a container from an image.</p></li>
+<li><p>docker container run -it runs the container interactively. Makes it like running normal terminal/bash on your laptop.</p></li>
+</ul>
 </section>
-<section id="recursion" class="level3">
-<h3 class="anchored" data-anchor-id="recursion">Recursion</h3>
-<p>Calling a function from within itself</p>
-<details>
-<summary>
-Code
-</summary>
-<div id="86c11383" class="cell" data-execution_count="6">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Recursive</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> factorial(n):</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> n<span class="op">==</span><span class="dv">0</span>:</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> <span class="dv">1</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> n <span class="op">*</span> factorial(n<span class="op">-</span><span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</div>
-This works because of the mathematical definition of recursion <span class="math display">\[
-\begin{align}
-&amp;0! = 1 \\
-&amp;n! = n \times (n-1)!
-\end{align}
-\]</span>
-</details>
+<section id="docker-hub" class="level3">
+<h3 class="anchored" data-anchor-id="docker-hub">Docker Hub</h3>
+<ul>
+<li><p>Similar to packaged files, images have multiple versions, indicated by tags.</p></li>
+<li><p>OWNER/CONTAINER_IMAGE_NAME:TAG.</p></li>
+<li><p>Default tag is ‘latest’.</p></li>
+</ul>
 </section>
-<section id="summary" class="level3">
-<h3 class="anchored" data-anchor-id="summary">Summary</h3>
-<p>Functional programming improves - testability - composability - parallelisability</p>
-<p>In functional programming, we shift from an imperative mindset (‘do this, do that, do this’) to a declarative one (‘here is what I need’) and it becomes about chaining transformation to the data.</p>
+<section id="dockerfiles" class="level3">
+<h3 class="anchored" data-anchor-id="dockerfiles">Dockerfiles</h3>
+<ul>
+<li><p>Specify the content of a container image and build with docker image build.</p></li>
+<li><p>If you want files to be available in the image, you need to specify this using something called mounts. This allows reading and writing to the host computers workspace. For large data sets, you should archive the data somewhere else and include instructions for the download of this data. Including the data in the image can make it unecessarily large.</p></li>
+<li><p>Dockerfiles can include files from the Docker host using the COPY instruction.</p></li>
+<li><p>Useful instructions:</p>
+<ul>
+<li><p>FROM python:3.8-slim (specificies base image)</p></li>
+<li><p>RUN apt-get update &amp;&amp; apt-get install -y etc (run standard linux commands. Only use one run command and chain together with &amp;&amp; commands)</p></li>
+<li><p>good to use –no-install-recommends with RUN to reduce size further.</p></li>
+<li><p>RUN python -m pip install –upgrade pip (just another example of RUN)</p></li>
+<li><p>COPY . . (copies explicitly the current directory on the host to the current working directory on the image)</p></li>
+<li><p>RUN commands only run when creating the image itself, CMD is used to actually run something everytime the image is used.</p></li>
+</ul></li>
+<li><p>Choosing the base image is non-trivial - choose the most specific base image you can that still allows you to do what you need. e.g if your using pytorch, use pytorch base image, not python and then install pytorch.</p></li>
+</ul>
+</section>
+<section id="apptainer" class="level3">
+<h3 class="anchored" data-anchor-id="apptainer">Apptainer</h3>
+<ul>
+<li><p>Alternative to Docker.</p></li>
+<li><p>Very recently changed name fom Singularity.</p></li>
+<li><p>Better suited to HPC systems</p></li>
+<li><p>Can run or build from Docker images.</p></li>
+<li><p>Apptainer can access files in the host OS by default - less isolated.</p></li>
+<li><p>Easier to interface with GPUs, MPI, and system level modules.</p></li>
+</ul>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -496,7 +369,7 @@ This works because of the mathematical definition of recursion <span class="math
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/sambarnett03\.github\.io\/SoftwareEngineeringLectureNotes\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

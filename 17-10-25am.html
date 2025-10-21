@@ -214,6 +214,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Lecture 8: Packaging and Dependency Management</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-10-25pm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9: Containerisation with Docker</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -285,7 +291,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>A popular, robuts unit testing framwork used with Python:</li>
 </ul>
-<div id="1e186e1c" class="cell" data-execution_count="1">
+<div id="4513293a" class="cell" data-execution_count="1">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_reversed():</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> <span class="bu">list</span>(<span class="bu">reversed</span>([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])) <span class="op">==</span> [<span class="dv">3</span>, <span class="dv">2</span>, <span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -337,26 +343,26 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>To check equality of native python objects including lists:</li>
 </ul>
-<div id="41bcd8a5" class="cell" data-execution_count="2">
+<div id="57db09de" class="cell" data-execution_count="2">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="cf">assert</span> list1 <span class="op">==</span> list2</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>To check equality of numpy arrays:</li>
 </ul>
-<div id="cccbc669" class="cell" data-execution_count="3">
+<div id="d4793e7a" class="cell" data-execution_count="3">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy.testing <span class="im">as</span> npt</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>npt.assert_array_equal(array1, array2)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>To check equality of numpy arrays containing floats to within ‘decimal’ amount of decimal places</li>
 </ul>
-<div id="909ea6da" class="cell" data-execution_count="4">
+<div id="4f0410b4" class="cell" data-execution_count="4">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>npt.assert_almost_equal(array1, array2, decimal<span class="op">=</span><span class="dv">2</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>To check that an error is raised (e.g if checking TypeError is raised when passing string to function expecting integer). The test will pass if the error is raised.</li>
 </ul>
-<div id="451cbccb" class="cell" data-execution_count="5">
+<div id="02d2062b" class="cell" data-execution_count="5">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_abc():</span>
@@ -366,7 +372,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Sometimes useful to place a test inside a with pytest.raise and outside it depending on whether an error is raised in the first place.</li>
 </ul>
-<div id="f7bbd294" class="cell" data-execution_count="6">
+<div id="89473258" class="cell" data-execution_count="6">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> test_abc():</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="pp">ValueError</span> <span class="kw">is</span> <span class="kw">not</span> <span class="va">None</span>:          <span class="co"># value error is raised</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">with</span> pytest.raises(<span class="pp">ValueError</span>):</span>
@@ -377,7 +383,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Sometimes useful to convert a list to a numpy array using the following:</li>
 </ul>
-<div id="91839822" class="cell" data-execution_count="7">
+<div id="8eb733f9" class="cell" data-execution_count="7">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> <span class="bu">isinstance</span>(test, <span class="bu">list</span>):</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    test <span class="op">=</span> np.array(test)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
@@ -395,7 +401,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Paramterisation is a method to pass a unit test many different inputs and outputs to try in a compact way.</p></li>
 <li><p>The decorator in the following example tells the function to look for variables ‘test’ and ‘expected’, where the variables take on each tuple in the list successively. Notice that ‘test’ and ‘expected’ need to be passed to the function as arguments.</p></li>
 </ul>
-<div id="785040cd" class="cell" data-execution_count="8">
+<div id="a3a358f8" class="cell" data-execution_count="8">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">@pytest.mark.parametrize</span>(</span>
@@ -411,7 +417,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>You may also want to pass the expected raises that occur:</li>
 </ul>
-<div id="7504b59e" class="cell" data-execution_count="9">
+<div id="db3e7271" class="cell" data-execution_count="9">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="at">@pytest.mark.parametrize</span>(</span>
@@ -435,7 +441,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>pip install pytest-cov, then run</li>
 </ul>
-<div id="5b2faf57" class="cell" data-execution_count="10">
+<div id="ec2b18f5" class="cell" data-execution_count="10">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>python <span class="op">-</span>m pytest <span class="op">--</span>cov<span class="op">=</span>{filename} tests<span class="op">/</span>{test <span class="bu">file</span> name}.py</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="co"># e.g</span></span>
@@ -460,7 +466,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>pytest has a special method setup_class(self) which runs before any other methods in the class. The setup_class method can therefore be used to store the data as a class attribute that will be used by the other methods.</p></li>
 <li><p>This is particularly useful when testing the methods of a class you wrote. In the following example, the mean, min and max methods that have been written for SomeOtherClass are tested.</p></li>
 </ul>
-<div id="55a8003f" class="cell" data-execution_count="11">
+<div id="178b8193" class="cell" data-execution_count="11">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> TestABC:</span>
@@ -487,7 +493,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Features provide an alternate way to provide multiple tests the same input data.</p></li>
 <li><p>Functions are declared outside the class with the decorator <span class="citation" data-cites="pytest.fixture">@pytest.fixture</span>() which can then be passed as arguments to methods within the class. See the below example for how this works:</p></li>
 </ul>
-<div id="1f1cbaf5" class="cell" data-execution_count="12">
+<div id="330804d2" class="cell" data-execution_count="12">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="at">@pytest.fixture</span>()</span>
@@ -511,13 +517,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>The data created in the fixture is remade everytime the unit test is ran be default. However, the data can be stored for the rest of the session (saving compute time if expensive to calculate) by specifying:</li>
 </ul>
-<div id="732ddb8a" class="cell" data-execution_count="13">
+<div id="d2a997ed" class="cell" data-execution_count="13">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="at">@pytest.fixture</span>(scope<span class="op">=</span><span class="st">'session'</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>Fixtures can be combined with parameterisation to allow several test cases to be run easily. Typically, an instance of the class is made using some arbitrary attributes, which are then overridden inside the test functions with the desired data:</li>
 </ul>
-<div id="a05b4895" class="cell" data-execution_count="14">
+<div id="13c27ee3" class="cell" data-execution_count="14">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="at">@pytest.fixture</span>()</span>
@@ -547,7 +553,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <li><p>Rather than using return, fixtures used for setup using the key work yield - all code preceeding yield is executed before the tests, all code afterwards is executed after the tests.</p></li>
 <li><p>For example, we might have a setup fixture to connect to a database. A unit test is the run making sure the correct data is retrieved. Once the unit test is completed, the setup fixture closes the connection to the database. While these two tasks could be combined in one unit test, debugging is made easier by separating them. Also, other tests requiring connection to the database can recycle the fixture.</p></li>
 </ul>
-<div id="5a520080" class="cell" data-execution_count="15">
+<div id="d97125da" class="cell" data-execution_count="15">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -581,7 +587,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Fixtures can accept other fixtures as arguments. For instance, we could connect to the database in one fixture, and then populate with example data in another. This makes debugging easier:</li>
 </ul>
-<div id="ec2cbe9f" class="cell" data-execution_count="16">
+<div id="5f978ebb" class="cell" data-execution_count="16">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -618,7 +624,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>pytest comes with in built fixtures. One such useful feature creates a temporary directory for our files during testing - ‘temp_path_factory’:</li>
 </ul>
-<div id="5118d5a9" class="cell" data-execution_count="17">
+<div id="fd1737a9" class="cell" data-execution_count="17">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> pathlib <span class="im">import</span> Path</span>
@@ -651,7 +657,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>To give an example, imagine you have a function get_user_profile(api_client, user_id), which returns the users name in all caps and whether they are an adult:</p></li>
 </ul>
-<div id="6649b20a" class="cell" data-execution_count="18">
+<div id="a5b715f3" class="cell" data-execution_count="18">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_user_profile(api_client, user_id):</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> api_client.fetch_user(user_id)</span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> {</span>
@@ -662,7 +668,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>We want to test this functionality. However, we don’t want to actually make the api call with api_client.fetch_user() in our test. Instead, we make a Mock object that returns an example of what api_client.fetch_user() would return. This allows us to test that get_user_profile() is transforming the data correctly.</li>
 </ul>
-<div id="db13015e" class="cell" data-execution_count="19">
+<div id="46376b95" class="cell" data-execution_count="19">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> unittest.mock <span class="im">import</span> Mock</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> app <span class="im">import</span> get_user_profile</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -678,7 +684,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>The mock_api_client.fetch_user.assert_called_once_with(123) ensures the code called the api_client.fetch_user only once. This is especially useful in cases where the code is more complicated - in this case it’s quite clear the it’s only be called once. If get_user_profile accidently made two calls to the API, the test would now fail:</li>
 </ul>
-<div id="894af948" class="cell" data-execution_count="20">
+<div id="e124cf8e" class="cell" data-execution_count="20">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_user_profile(api_client, user_id):</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    api_client.fetch_user(user_id)</span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    data <span class="op">=</span> api_client.fetch_user(user_id)</span>
@@ -687,13 +693,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <ul>
 <li>Mocks can also be used to simulate errors and ensure they are handled correctly. For example, you could set the mock_api_client to raise a network error exception. You can then make sure that get_user_profile handles the raised error correctly.</li>
 </ul>
-<div id="de0ad828" class="cell" data-execution_count="21">
+<div id="9f5c2bad" class="cell" data-execution_count="21">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>mock_api_client.fetch_user.side_effect <span class="op">=</span> <span class="pp">Exception</span>(<span class="st">"Network error"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </div>
 <ul>
 <li>The methods of mocks are also mocks. The most useful things to do are assign callable behaviours with .return_value and .side_effect, as well as checking how many times the mock’s method was called</li>
 </ul>
-<div id="c00d6610" class="cell" data-execution_count="22">
+<div id="6acaae1a" class="cell" data-execution_count="22">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>factory <span class="op">=</span> Mock()</span>
 <span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>factory.return_value <span class="op">=</span> <span class="dv">2</span></span>
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>factory.side_effect <span class="op">=</span> <span class="pp">Exception</span>(<span class="st">'Boo'</span>)</span>
@@ -715,7 +721,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><p>Conceptually, the with makes more sense so we’ll start with that</p></li>
 </ul>
-<div id="329f589e" class="cell" data-execution_count="23">
+<div id="1e18ecae" class="cell" data-execution_count="23">
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pytest</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sqlite3</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> query_database   <span class="co"># function to test</span></span>
@@ -815,7 +821,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/sambarnett03\.github\.io\/SoftwareEngineeringLectureNotes\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

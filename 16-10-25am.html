@@ -142,7 +142,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./20-10-25am.html">Lecture 7: Continuous Integration( CI)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./16-10-25am.html">Lecture 4: Version Control with Git and Github</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -186,7 +186,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./16-10-25am.html" class="sidebar-item-text sidebar-link">
+  <a href="./16-10-25am.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Lecture 4: Version Control with Git and Github</span></a>
   </div>
 </li>
@@ -204,7 +204,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./20-10-25am.html" class="sidebar-item-text sidebar-link active">
+  <a href="./20-10-25am.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 7: Continuous Integration( CI)</span></a>
   </div>
 </li>
@@ -212,6 +212,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./20-10-25pm.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 8: Packaging and Dependency Management</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-10-25pm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9: Containerisation with Docker</span></a>
   </div>
 </li>
     </ul>
@@ -224,215 +230,210 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#key-principles" id="toc-key-principles" class="nav-link active" data-scroll-target="#key-principles">Key principles</a></li>
-  <li><a href="#ci-tools" id="toc-ci-tools" class="nav-link" data-scroll-target="#ci-tools">CI Tools</a></li>
-  <li><a href="#github-actions" id="toc-github-actions" class="nav-link" data-scroll-target="#github-actions">GitHub actions</a></li>
+  <li><a href="#lecture-4-version-control-with-git-and-github" id="toc-lecture-4-version-control-with-git-and-github" class="nav-link active" data-scroll-target="#lecture-4-version-control-with-git-and-github">Lecture 4: Version Control with Git and Github</a>
+  <ul class="collapse">
+  <li><a href="#version-control" id="toc-version-control" class="nav-link" data-scroll-target="#version-control">Version control</a></li>
+  <li><a href="#how-do-they-work" id="toc-how-do-they-work" class="nav-link" data-scroll-target="#how-do-they-work">How do they work</a></li>
+  <li><a href="#version-control-platforms" id="toc-version-control-platforms" class="nav-link" data-scroll-target="#version-control-platforms">Version Control Platforms</a></li>
+  <li><a href="#workflows" id="toc-workflows" class="nav-link" data-scroll-target="#workflows">Workflows</a></li>
+  <li><a href="#command-line-interface-cli" id="toc-command-line-interface-cli" class="nav-link" data-scroll-target="#command-line-interface-cli">Command Line Interface (CLI)</a></li>
+  </ul></li>
   <li><a href="#notes-from-exercises" id="toc-notes-from-exercises" class="nav-link" data-scroll-target="#notes-from-exercises">Notes from exercises</a>
   <ul class="collapse">
-  <li><a href="#test-coverage" id="toc-test-coverage" class="nav-link" data-scroll-target="#test-coverage">Test coverage</a></li>
-  <li><a href="#making-documentation" id="toc-making-documentation" class="nav-link" data-scroll-target="#making-documentation">Making Documentation</a></li>
+  <li><a href="#setting-up-git" id="toc-setting-up-git" class="nav-link" data-scroll-target="#setting-up-git">Setting up Git</a></li>
+  <li><a href="#cloning-repositories" id="toc-cloning-repositories" class="nav-link" data-scroll-target="#cloning-repositories">Cloning repositories</a></li>
+  <li><a href="#initialising-your-own-repository" id="toc-initialising-your-own-repository" class="nav-link" data-scroll-target="#initialising-your-own-repository">Initialising your own repository</a></li>
+  <li><a href="#workflow" id="toc-workflow" class="nav-link" data-scroll-target="#workflow">Workflow</a></li>
+  <li><a href="#using-the-remote-branch" id="toc-using-the-remote-branch" class="nav-link" data-scroll-target="#using-the-remote-branch">Using the remote branch</a></li>
+  <li><a href="#branches" id="toc-branches" class="nav-link" data-scroll-target="#branches">Branches</a></li>
+  <li><a href="#ignoring-files" id="toc-ignoring-files" class="nav-link" data-scroll-target="#ignoring-files">Ignoring files</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Lecture 7: Continuous Integration( CI)</h1>
-</div>
+<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
 
 
 
-<div class="quarto-title-meta">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="lecture-4-version-control-with-git-and-github" class="level2">
+<h2 class="anchored" data-anchor-id="lecture-4-version-control-with-git-and-github">Lecture 4: Version Control with Git and Github</h2>
+<section id="version-control" class="level3">
+<h3 class="anchored" data-anchor-id="version-control">Version control</h3>
 <ul>
-<li><p>An automated process for verifying and integrating code changes.</p></li>
-<li><p>Objective: to detect and resolve issues early by frequently testing and integrating code changes. Cognitive overhead is much smaller by solving problems early while you still remember everything.</p></li>
-<li><p>Ensure compatability between mac, linux and windows.</p></li>
-<li><p>Avoiding dependencies on specific user data or development machine configurations e.g different versions of python, or hard code directory path for specific file you’re using.</p></li>
-</ul>
-<section id="key-principles" class="level3">
-<h3 class="anchored" data-anchor-id="key-principles">Key principles</h3>
-<ul>
-<li><p>Single source repo: maintain all code and dependencies in a shared repo - this is the gold standard repo with most recent updates.</p></li>
-<li><p>Automate the build: automatically compile, package and create installers for the code.</p></li>
-<li><p>Self-testing builds: automatically run unit tests on different versions of python and different os.</p></li>
-<li><p>Commit frequently: integrate changes regularly to avoid complex conflicts. Use issue/feature branch and main branch model.</p></li>
-<li><p>Integration machine: ensure builds and tests are conducted in a standardised, clean environment. Avoids dependency on e.g hard coded file path.</p></li>
-<li><p>Visibility and transparency: ensure all build and test results are accessible to the entire team.</p></li>
+<li><p>A tool that tracks changes to raw text files.</p></li>
+<li><p>Records changes you made and the order in which you made them.</p></li>
+<li><p>Offers more efficient backup.</p></li>
+<li><p>Easy to roll back (all of part of) your work.</p></li>
+<li><p>Can share one version with collaborators whilst you work on another.</p></li>
+<li><p>Don’t add result/output files to version control - think about this when setting up file storage.</p></li>
+<li><p>Store code in separate files where possible. This allows two people to work on separate files, making merge conflicts less likely.</p></li>
+<li><p>Never store sensitive information in version control</p></li>
 </ul>
 </section>
-<section id="ci-tools" class="level3">
-<h3 class="anchored" data-anchor-id="ci-tools">CI Tools</h3>
+<section id="how-do-they-work" class="level3">
+<h3 class="anchored" data-anchor-id="how-do-they-work">How do they work</h3>
 <ul>
-<li><p>We use GitHub Actions. If you have a public repo, you can use runners for every os on the cloud.</p></li>
-<li><p>Other options: GitLab, GitBucket, TravisCI, AppVeyor.</p></li>
+<li><p>Start by storing the original base version of the file.</p></li>
+<li><p>After that, only changes are stored.</p></li>
+<li><p>Two users make independent sets of changes, creating two different versions of the same document (called branches).</p></li>
+<li><p>Can merge different branches together onto the same base document.</p></li>
 </ul>
 </section>
-<section id="github-actions" class="level3">
-<h3 class="anchored" data-anchor-id="github-actions">GitHub actions</h3>
-<pre class="{yaml}"><code>name: Hello world
-
-on:
-    push:
-    pull_request:
-    workflow_dispatch:
-
-jobs:
-    basic-job:
-        runs-on: ubuntu-latest
-
-        steps:
-        -   name: Run a one-line script
-            run: echo 'hello world'</code></pre>
-<p>Here, the on: block tells you what will run when. Leaving empty means that the tests will run in every instance. workflow_dispatch enables the use of the githuib gui. Other triggers are possible eg. schedule .</p>
-<p>runs-on is either windows, mac or ubuntu. The steps run specific commands - e.g python or pytest. First step is typically checkout the repo, the second install dependencies, and the third run pytest. Each step gets either a tick or cross depending on whether it worked or not.</p>
+<section id="version-control-platforms" class="level3">
+<h3 class="anchored" data-anchor-id="version-control-platforms">Version Control Platforms</h3>
+<ul>
+<li><p>Services offered by companies which provide remote repositories to store your files. This protects files from fire, theft, etc.</p></li>
+<li><p>Separate but related to the version control software itself (git).</p></li>
+<li><p>Github is most popular. Gitlab also popular, but falling out of favour. Offers more control than github, but more difficult to use.</p></li>
+<li><p>Github student accounts offer free perks.</p></li>
+<li><p>To set up git and github - generate ‘ssh key pair’ to authenticate yout computer - essentially replaces passwords</p>
+<ul>
+<li>one private key that never leaves your computer</li>
+<li>one public key</li>
+</ul></li>
+<li><p>Anyone with the public key can verify that you own the private key without them having to see</p></li>
+<li><p>Upload the public one to Github as authentication</p></li>
+<li><p>Now can securely transfer</p></li>
+</ul>
+</section>
+<section id="workflows" class="level3">
+<h3 class="anchored" data-anchor-id="workflows">Workflows</h3>
+<ul>
+<li><p>Different groups have different ways of working with version control</p></li>
+<li><p>A workflow is agreed upon e.g have a main branch and a development branch that people contribute to before adding to main branch.</p></li>
+</ul>
+</section>
+<section id="command-line-interface-cli" class="level3">
+<h3 class="anchored" data-anchor-id="command-line-interface-cli">Command Line Interface (CLI)</h3>
+<ul>
+<li><p>Best way to use git for learning</p></li>
+<li><p>Necessary for HPC clusters</p></li>
+<li><p>Once comfortable, use as part of IDE graphically</p></li>
+</ul>
+</section>
 </section>
 <section id="notes-from-exercises" class="level2">
 <h2 class="anchored" data-anchor-id="notes-from-exercises">Notes from exercises</h2>
+<section id="setting-up-git" class="level3">
+<h3 class="anchored" data-anchor-id="setting-up-git">Setting up Git</h3>
+<p>When on a new machine, need to configure username, email, and default text editor to use when adding commit messages etc.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.name <span class="st">"Firstname Surname"</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> user.email <span class="st">"fsurname@university.ac.uk"</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> core.editor <span class="st">"nano -w"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The configuration settings can be view with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--list</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Help can be accessed with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">-h</span>       <span class="co"># and</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--help</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>To back work up to GitHub, a pair of SSH keys is needed. To generate these, type</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ssh-keygen</span> <span class="at">-t</span> ed25519</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This creates a folder in the root directory called /.ssh. Inside, there is a private and public key - the public ends with extension .pub. This can be printed in the terminal with</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/.ssh/id_ed25519.pub</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This can be copied into github’s SSH settings (copy the entire output of cat).</p>
+</section>
+<section id="cloning-repositories" class="level3">
+<h3 class="anchored" data-anchor-id="cloning-repositories">Cloning repositories</h3>
 <ul>
-<li>To create a workflow, make a folder at</li>
+<li><p>Find the desired repo on Github, click on the Code box, then clone. Select SSH and copy the address given.</p></li>
+<li><p>In the terminal, type</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">.github/workflows</span>   <span class="co"># in your root project directory</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone {repository url}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="initialising-your-own-repository" class="level3">
+<h3 class="anchored" data-anchor-id="initialising-your-own-repository">Initialising your own repository</h3>
 <ul>
-<li>Workflows are made as .yml files in this folder. e.g:</li>
+<li><p>Enter an existing repo and type ‘git init’. This turns it into a git repo, which can be verified with ‘ls -a’ to see a .git folder.</p></li>
+<li><p>Next, make an empty repo on GitHub and name it. Then copy the SSH url option and type</p></li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Basic GitHub Actions Workflow</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">basic-job</span><span class="kw">:</span></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run a one-line script</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">run</span><span class="kw">:</span><span class="at"> echo "Hello, world!"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin {ssh url}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li>Breaking down this example:
+<li><p>If the repo already contains files, they need to be added and committed. This can be done with ‘git add .’, then git commit -m ‘your commit message’. ‘git add .’ adds all files that have been changed (in this case every file in the repo).</p></li>
+<li><p>Once the commits have been made, they can be pushed to github with</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin main</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The origin main connects the local main branch with the main branch of the remote repo. The -u saves this as the default connection for all future pushes.</p>
+</section>
+<section id="workflow" class="level3">
+<h3 class="anchored" data-anchor-id="workflow">Workflow</h3>
 <ul>
-<li><p>on: block describes when the workflow should be run. An empty argument implies it should run on every instance of the case e.g every push. Additional arguments are e.g specific branch names. workflow-dispatch gives the option to run the test with the GUI</p></li>
-<li><p>jobs: block gives the actual tests that will run.</p></li>
-<li><p>the name argument in steps helps to quickly recognise which step failed.</p></li>
+<li>The general workflow in Git is:
+<ul>
+<li>make a change to a file</li>
+<li>add all desired changes to the staging area</li>
+<li>commit all changes in staging area (saves these changes)</li>
+<li>push these changes to the remote branch</li>
 </ul></li>
-<li>Basic templates can be searched for on GitHub. An example for running Python on various versions is below:</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Python package</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">on</span><span class="kw">:</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">push</span><span class="kw">:</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"main"</span><span class="at"> </span><span class="kw">]</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">pull_request</span><span class="kw">:</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">branches</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="at"> </span><span class="st">"main"</span><span class="at"> </span><span class="kw">]</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">workflow_dispatch</span><span class="kw">:</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">jobs</span><span class="kw">:</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">build</span><span class="kw">:</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">runs-on</span><span class="kw">:</span><span class="at"> ubuntu-latest</span></span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">strategy</span><span class="kw">:</span></span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">fail-fast</span><span class="kw">:</span><span class="at"> </span><span class="ch">false</span></span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">matrix</span><span class="kw">:</span></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"3.9"</span><span class="kw">,</span><span class="at"> </span><span class="st">"3.10"</span><span class="kw">,</span><span class="at"> </span><span class="st">"3.11"</span><span class="kw">]</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">steps</span><span class="kw">:</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/checkout@v4</span></span>
-<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Set up Python ${{ matrix.python-version }}</span></span>
-<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> actions/setup-python@v3</span></span>
-<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a><span class="at">      </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a><span class="at">        </span><span class="fu">python-version</span><span class="kw">:</span><span class="at"> ${{ matrix.python-version }}</span></span>
-<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Install dependencies</span></span>
-<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>        python -m pip install --upgrade pip setuptools wheel</span>
-<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>        python -m pip install .[dev]</span>
-<span id="cb4-31"><a href="#cb4-31" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Lint with flake8</span></span>
-<span id="cb4-32"><a href="#cb4-32" aria-hidden="true" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb4-33"><a href="#cb4-33" aria-hidden="true" tabindex="-1"></a>        # stop the build if there are Python syntax errors or undefined names</span>
-<span id="cb4-34"><a href="#cb4-34" aria-hidden="true" tabindex="-1"></a>        flake8</span>
-<span id="cb4-35"><a href="#cb4-35" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Test with pytest</span></span>
-<span id="cb4-36"><a href="#cb4-36" aria-hidden="true" tabindex="-1"></a><span class="fu">      run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb4-37"><a href="#cb4-37" aria-hidden="true" tabindex="-1"></a>        pytest</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<li>Useful commands include:
 <ul>
-<li>Code breakdown:
-<ul>
-<li>fail-fast: if one version fails, the rest will continue to run</li>
-<li>matrix: allows several versions to be ran at once. Could replace with os-version: [ubuntu-latest, macos-latest, windows-latest] to access os versions.</li>
-<li>The rest is kind of boiler plate - just copy and paste. The tests would typically be more complex than just pytest, see example later.</li>
+<li>git status: shows the changes in the staging area to be committed</li>
+<li>git diff: shows an overview of the changes made to a file. Can view changes compared with versions saved in older commits using git diff HEAD~n filename, where n is the number of commits prior you want to check. Alternatively, you can use the identifier of the commit you want to compare with (obtained from git log)</li>
+<li>git log: shows the history of the repo (previous commits and pushes etc)</li>
+<li>git restore: returns the previous state of a file (obtained from last commit). git checkout
+
+filename can be used to restore a file from any previously saved commit.</li>
 </ul></li>
-</ul>
-<section id="test-coverage" class="level3">
-<h3 class="anchored" data-anchor-id="test-coverage">Test coverage</h3>
-<ul>
-<li>The extent to which the tests cover each line in your code can be found using pytest –cov. An example is:</li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pytest</span> <span class="at">--cov-config</span><span class="op">=</span>.coveragerc <span class="at">--cov</span><span class="op">=</span>./ci_course <span class="at">--cov-report</span><span class="op">=</span>xml</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<pre><code>- --cov-config=.coveragerc specific the config file for the coverage assessment. The autogenerated one simply has ignore files in the test folder.
-- --cov-./ci_course gives the folder to check the coverage of.
-- --cov-report.xml gives the type of output file. </code></pre>
-<ul>
-<li><p>Github actions can automate this by placing it inside a worfklow, which will be shown below.</p></li>
-<li><p>Codecov is website that allows you to easily view the output of such a coverage test, for all your github repos. To set up codecov:</p>
-<ul>
-<li>sign in with github account</li>
-<li>click configure next to your repository</li>
-<li>use githubactions, pytest, and select repository token.</li>
-<li>navigate to repo in github, go to settings, secrets and variables, actions, new repository secret, then put ‘CODECOV_TOKEN’ as the name and the generated string from code_cov as the variable.</li>
-</ul></li>
-<li><p>To automate the testing of coverage of a repo, add this to workflow</p></li>
-</ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode yaml code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># This workflow will install Python dependencies, run tests and lint with a variety of Python versions</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="fu">name</span><span class="kw">:</span><span class="at"> Coverage Report</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Run coverage test</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="fu">    run</span><span class="kw">: </span><span class="ch">|</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="at">    pytest --cov-config=.coveragerc --cov=./ci_course --cov-report=xml --cov-branch</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> Upload coverage reports to Codecov</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">uses</span><span class="kw">:</span><span class="at"> codecov/codecov-action@v5</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">with</span><span class="kw">:</span></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">token</span><span class="kw">:</span><span class="at"> ${{ secrets.CODECOV_TOKEN }}</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">fail_ci_if_error</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="at">    </span><span class="fu">files</span><span class="kw">:</span><span class="at"> coverage.xml</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<ul>
-<li>Codecov should now show the coverage - you can view it line by line.</li>
 </ul>
 </section>
-<section id="making-documentation" class="level3">
-<h3 class="anchored" data-anchor-id="making-documentation">Making Documentation</h3>
+<section id="using-the-remote-branch" class="level3">
+<h3 class="anchored" data-anchor-id="using-the-remote-branch">Using the remote branch</h3>
 <ul>
-<li><p>We use sphinx and read the docs.</p></li>
-<li><p>Inside a venv, make a docs folder in the root of your project and type:</p></li>
+<li>If a local branch is already connected with the corresponding remote branch (e.g main local is connected with main remote), then the command used is</li>
 </ul>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">pip</span> install sphinx</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sphinx-quickstart</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <ul>
-<li><p>Add a .gitkeep file inside the _static folder so it gets pushed correctly.</p></li>
-<li><p>Go to Read the Docs.</p>
-<ul>
-<li>login with github</li>
-<li>import a project from your github</li>
-<li>follow the instructions, leaving everything as default</li>
-<li>this should build the website from the docs folder in the repo</li>
-</ul></li>
+<li>If it is the first time pushing to a new branch</li>
 </ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin {desired name of remote branch}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The -u sets this behaviour as default for this branch.</p>
+<ul>
+<li>A push can fail if a conflict between the local and remote branches occurs. This typically happens if the same lines of the same file is edited both on the remote branch and on the local. To fix this, we use ‘git pull’ to pull the new file, fix the conflicts on our own pc, then push again once they have been resolved. Note when git pull is used for the first time, a default method for merging may be required. In this case, the following and try ‘git pull’ again</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> config <span class="at">--global</span> pull.rebase false</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>To mitigate conflicts, code should be split into multiple files where possible, and separate branches be used.</li>
+</ul>
+</section>
+<section id="branches" class="level3">
+<h3 class="anchored" data-anchor-id="branches">Branches</h3>
+<ul>
+<li>To view current branches, type</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The current branch is indicated with an *.</p>
+<ul>
+<li>To create a new branch, type</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> branch {new branch name}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>To switch branches type</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> switch {branch name}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<ul>
+<li>To merge branches from branch a to branch b, navigate to branch a and type</li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb15"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> merge {branch name}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This can be followed by git push to update the remote branch as usual.</p>
+<ul>
+<li>For larger projects, its best to use a pull request to merge branches. When a new push has been made to a branch, Github displays a banner saying ‘Compare and Pull Request’. This does a similar thing to git merge, but gives a graphical UI that allows notes to be made, requests for senior colleagues to check over work, and more.</li>
+</ul>
+</section>
+<section id="ignoring-files" class="level3">
+<h3 class="anchored" data-anchor-id="ignoring-files">Ignoring files</h3>
+<ul>
+<li><p>To stop git tracking certain files, a file called .gitignore can be made in the root directory of the project.</p></li>
+<li><p>The contents of the file may look like</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb16"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ex">*.dat</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="ex">results/</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>In this case, all files ending .dat, and all files within the results folder, will not be tracked by git.</p>
+<ul>
+<li><p>This is useful as typically data files and other output files should not be tracked using git as it may take up lots of disk space, and distracts from the relevent details.</p></li>
+<li><p>Empty folder are not pushed to git, e.g the results folder if all contents have been added to .gitignore, the folder will not appear in the remote branch. To fix this, a file called .gitkeep can be added to folder. We then add this to the commit using</p></li>
+</ul>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb17"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add <span class="at">-f</span> folder/.gitkeep</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Note that the -f (force) is required to overide the .gitignore instructions. This can be commited and pushed. The folder should now appear in the remote branch</p>
 
 
 </section>
@@ -512,7 +513,7 @@ jobs:
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/sambarnett03\.github\.io\/SoftwareEngineeringLectureNotes\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }

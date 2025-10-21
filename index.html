@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>quarto-inputda8038d5fe861c0c – My Lecture Notes</title>
+<title>Software Engineering Lecture Notes – My Lecture Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,41 +19,6 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-html { -webkit-text-size-adjust: 100%; }
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -142,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./13-10-25.html">Lecture 1: Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">Software Engineering Lecture Notes</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -168,7 +133,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./13-10-25.html" class="sidebar-item-text sidebar-link active">
+  <a href="./13-10-25.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Lecture 1: Introduction</span></a>
   </div>
 </li>
@@ -214,6 +179,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Lecture 8: Packaging and Dependency Management</span></a>
   </div>
 </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-10-25pm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lecture 9: Containerisation with Docker</span></a>
+  </div>
+</li>
     </ul>
     </div>
 </nav>
@@ -224,67 +195,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#lecture-1-introduction" id="toc-lecture-1-introduction" class="nav-link active" data-scroll-target="#lecture-1-introduction">Lecture 1: Introduction</a></li>
-  <li><a href="#virtual-environments" id="toc-virtual-environments" class="nav-link" data-scroll-target="#virtual-environments">Virtual Environments</a>
-  <ul class="collapse">
-  <li><a href="#testing-style-for-pseudo-code" id="toc-testing-style-for-pseudo-code" class="nav-link" data-scroll-target="#testing-style-for-pseudo-code">Testing style for pseudo code</a></li>
-  </ul></li>
+  <li><a href="#course-overview" id="toc-course-overview" class="nav-link active" data-scroll-target="#course-overview">Course Overview</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content"><header id="title-block-header" class="quarto-title-block"></header>
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Software Engineering Lecture Notes</h1>
+</div>
 
 
 
+<div class="quarto-title-meta">
 
-<section id="lecture-1-introduction" class="level2">
-<h2 class="anchored" data-anchor-id="lecture-1-introduction">Lecture 1: Introduction</h2>
-<ul>
-<li><p>Software group do courses on CUDA and cloud computing, useful to ask if I need help: rse.ox.ac.uk, can sign onto courses.</p></li>
-<li><p>Software is important for reproducibility</p></li>
-<li><p>Difference between programming and engineering: programming is algorithms, syntax, individual, one line at a time. Engineering considers the life cycle of the software, maintenance, refactoring, considering stakeholders, building for the future etc.</p></li>
-<li><p>Waterfall model:</p>
-<ul>
-<li>requirement analysis</li>
-<li>design</li>
-<li>implementation</li>
-<li>testing</li>
-<li>release</li>
-<li>maintenance not so useful in academia as too fixed, agile model turns this into a loop and attempts to make the minimum viable product, the requirements are always assessed and reconsidered.</li>
-</ul></li>
-<li><p>Recommended book: facts and fallacies of software engineering</p></li>
-<li><p>All training on https://train.rse.ox.ac.uk/</p></li>
-<li><p>Notes for myself:</p>
-<ul>
-<li>try to include unit testing</li>
-<li>use WSl from day 1</li>
-<li>how to include pseudo code in quarto</li>
-<li>learn about testing during programme</li>
-</ul></li>
-</ul>
-</section>
-<section id="virtual-environments" class="level2">
-<h2 class="anchored" data-anchor-id="virtual-environments">Virtual Environments</h2>
-<p>To create a virtual environment, type</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">python3</span> <span class="at">-m</span> venv {desired name of venv}</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="bu">source</span> {desired name of venv}/bin/activate</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>The first line of code creates the virtual environment. It makes a folder in the cwd that contains all the info and libraries regarding the virtual environment. The second line of code actually activates the virtual environment.</p>
-<p>To deactivate the virtual environment, type:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">deactivate</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<p>To delete a virtual environment, move into the directory containing its folder and type</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> <span class="at">-r</span> {name of venv}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<section id="testing-style-for-pseudo-code" class="level3">
-<h3 class="anchored" data-anchor-id="testing-style-for-pseudo-code">Testing style for pseudo code</h3>
-<details>
-<summary>
-Pseudocode
-</summary>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> vcf_file <span class="kw">|</span> <span class="fu">sed</span> <span class="at">-n</span> <span class="st">'/#CHROM/,$p'</span> <span class="kw">|</span> <span class="fu">cut</span> <span class="at">-f</span> 1,2,4,5 <span class="op">&gt;</span> variant_info.txt </span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-</details>
+    
+  
+    
+  </div>
+  
 
 
-</section>
+</header>
+
+
+<section id="course-overview" class="level1">
+<h1>Course Overview</h1>
+<p>These notes accompany the lectures for <strong>Software Engeering</strong>.</p>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -361,7 +302,7 @@ Pseudocode
     }
       var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var mailtoRegex = new RegExp(/^mailto:/);
-        var filterRegex = new RegExp('/' + window.location.host + '/');
+        var filterRegex = new RegExp("https:\/\/sambarnett03\.github\.io\/SoftwareEngineeringLectureNotes\/");
       var isInternal = (href) => {
           return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
       }
